@@ -28,4 +28,8 @@
 The following [Setup script](../scripts/bash/prereqSetup.sh) calls multiple other scripts to run 
 
 
+## Config setup
 
+## DX Project Setup
+
+## JWT Auth Setup
