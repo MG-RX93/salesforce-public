@@ -25,7 +25,7 @@
 
 ## Automating Prerequisites Setup
 
-The following [Setup script](../scripts/bash/prereqSetup.sh) calls multiple other scripts to run 
+The following [Setup script](../scripts/bash/DX%20Setup/prereqSetup.sh) calls multiple other scripts to run 
 
 
 ## Config setup
