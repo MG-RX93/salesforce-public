@@ -1,0 +1,103 @@
+####################################################
+# The docker image the jobs initialize with.
+# We use nodejs, so a node image makes sense.
+# https://docs.gitlab.com/ee/ci/yaml/README.html#image
+####################################################
+
+image: "node:latest"
+
+#
+# GitLab CI/CD Pipeline for deploying DreamHouse App using Salesforce DX
+#
+#
+# Run these commands before executing any build jobs,
+# such as to install dependencies and set environment variables
+#
+before_script:
+    # Decrypt server key
+    # - openssl enc -aes-256-cbc -md sha256 -salt -d -in assets/server.key.enc -out assets/server.key -k $SERVER_KEY_PASSWORD -pbkdf2
+    - openssl enc -nosalt -aes-256-cbc -d -in assets/server.key.enc -out assets/server.key -base64 -K $SERVER_KEY -iv $SERVER_IV
+    # Install jq, a json parsing library
+    - apt update && apt -y install jq
+    #Install rsync
+    - apt -y install rsync
+    # Setup SFDX environment variables
+    # https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_cli_env_variables.htm
+    - export SALESFORCE_CLI_URL=https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+    - export SFDX_AUTOUPDATE_DISABLE=false
+    - export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true
+    - export SFDX_DOMAIN_RETRY=600
+    - export SFDX_LOG_LEVEL=DEBUG
+    # Install Salesforce CLI
+    - mkdir sfdx
+    - wget -qO- $SALESFORCE_CLI_URL | tar xJ -C sfdx --strip-components 1
+    - './sfdx/install'
+    - export PATH=./sfdx/$(pwd):$PATH
+    # Output CLI version and plug-in information
+    - sfdx update
+    - sfdx --version
+    - sfdx plugins --core
+#
+# Define the stages of our pipeline
+#
+stages:
+    - unit-testing
+    - validate
+    - deploy
+#
+# Stage 1 -- Create a scratch org for code testing
+#
+unit-testing:
+    stage: unit-testing
+    script:
+        # Authenticate to the Dev Hub using the server key 
+        - sfdx force:auth:jwt:grant --setdefaultdevhubusername --clientid $SF_CONSUMER_KEY --jwtkeyfile assets/server.key --username $SF_USERNAME --setdefaultdevhubusername -a $SF_MYHUB -r $SF_DEVHUB_URL
+        # Create scratch org
+        - sfdx force:org:create -v $SF_MYHUB -s -f config/project-scratch-def.json -a $SF_ORG
+        - sfdx force:org:display
+        # Push source to scratch org (this is with source code, all files, etc)
+        - sfdx force:source:push -f
+        # Unit Testing
+        # - sfdx force:apex:test:run --wait 10 --resultformat human --codecoverage --testlevel RunLocalTests
+        - mkdir ~/tests
+        - mkdir ~/tests/apex
+        - sfdx force:apex:test:run -u $SF_ORG -c -r human -d ~/tests/apex -w 9999
+        # Delete Scratch Org
+        - sfdx force:org:delete --noprompt
+        - rm ~/tests/apex/*.txt ~/tests/apex/test-result-7*.json
+    only:
+        - integration
+#
+# Stage 2 -- Validate in a sandbox
+validate:
+    stage: validate
+    script:
+        - mkdir mdapi_output_dir
+        - export SFDX_AUDIENCE_URL=https://test.salesforce.com
+        - export SFDX_API_VERSION=$INTG_SB_API_VERSION
+        - rsync -avh force-app/base/main/default/ force-app/sandbox/main/default/
+        - rsync -avh force-app/feature/main/default/ force-app/sandbox/main/default/
+        - sfdx force:source:convert -d mdapi_output_dir/ -r ./force-app/sandbox --packagename PCKG00
+        - sfdx force:source:convert -d mdapi_output_dir/ -r ./force-app/base --packagename PCKG00
+        - sfdx force:auth:jwt:grant --clientid $INTG_SB_CONSUMER_KEY --jwtkeyfile assets/server.key --username $INTG_SB_USERNAME -a intSB -r $INTG_SB_URL
+        - sfdx force:mdapi:deploy -d mdapi_output_dir/ -u "intSB" -c -w -1
+    only:
+        - integration
+# #
+# # Stage 3 -- Deploy to a sandbox
+deploy:
+    stage: deploy
+    script:
+        - mkdir mdapi_output_dir
+        - export SFDX_AUDIENCE_URL=https://test.salesforce.com
+        - export SFDX_API_VERSION=$INTG_SB_API_VERSION
+        - rsync -avh force-app/base/main/default/ force-app/sandbox/main/default/
+        - rsync -avh force-app/feature/main/default/ force-app/sandbox/main/default/
+        - sfdx force:source:convert -d mdapi_output_dir/ -r ./force-app/sandbox --packagename PCKG00
+        - sfdx force:auth:jwt:grant --clientid $INTG_SB_CONSUMER_KEY --jwtkeyfile assets/server.key --username $INTG_SB_USERNAME -a intSB -r $INTG_SB_URL
+        - sfdx force:mdapi:deploy -d mdapi_output_dir/ -u "intSB" -w -1
+        # Remove server key
+        - rm assets/server.key
+    when: manual
+    only:
+        - integration
