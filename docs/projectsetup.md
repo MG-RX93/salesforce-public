@@ -30,6 +30,11 @@ The following [Setup script](../scripts/bash/DX%20Setup/prereqSetup.sh) calls mu
 
 ## Config setup
 
+- Husky
+  - Resources
+    - [Stop Manually Formatting Your Code, Use Pre-commit Hooks Instead](https://betterprogramming.pub/stop-manually-formatting-your-code-dcca34de7b1e)
+    - [Automatically format your Apex on every commit](https://medium.com/@charlie_77818/automatically-format-your-apex-on-every-commit-a5b98a2653b5)
+
 ## DX Project Setup
 
 ## JWT Auth Setup
