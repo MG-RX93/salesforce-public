@@ -1,5 +1,5 @@
 #!/bin/bash
-function runHomeBrewChecks() {
+function runHomebrewChecks() {
   echo "-------------------------------------------------------------------------------------------------------------------------"
   echo
   echo "$(tput setaf 3)Running Homebrew Checks"

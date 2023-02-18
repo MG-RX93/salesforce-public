@@ -1,6 +1,6 @@
 # Run Homebrew checks
 . scripts/bash/DX%20Setup/homebrew.sh
-runHomeBrewChecks
+runHomebrewChecks
 
 # Run Git checks
 . scripts/bash/DX%20Setup/git.sh
