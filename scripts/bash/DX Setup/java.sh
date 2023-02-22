@@ -11,7 +11,7 @@ function runJavaChecks() {
       echo
       echo "$(tput setaf 2)Installing java..."
       read -p "$(tput setaf 3)Enter java package name: " pkgName
-      brew cask install "$pkgName"
+      brew install "$pkgName"
   else
       echo
       echo "$(tput setaf 2)Java's already installed..."
