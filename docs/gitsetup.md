@@ -39,7 +39,7 @@
 - Resolve any conflicts and run git push
     
     ```bash
-    # Commit changes
+    # Commit changes (requires GPG keys)
     git commit -S -m "DX project"
     # Set upstream and push
     git push --set-upstream origin/main main
