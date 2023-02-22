@@ -9,7 +9,8 @@ function runGitChecks() {
   if [[ $? != 0 ]]; then
     echo
     echo "$(tput setaf 2)Installing git..."
-    brew install git
+    read -p "$(tput setaf 3)Enter git package name: " pkgName
+    brew install "$pkgName"
   else
     echo
     echo "$(tput setaf 2)git's already installed!!!..."
