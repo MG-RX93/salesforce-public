@@ -6,3 +6,10 @@ runHomebrewChecks
 . scripts/bash/DX%20Setup/git.sh
 runGitChecks
 
+# Run Java checks
+. scripts/bash/DX%20Setup/java.sh
+runJavaChecks
+
+# Run Ant checks
+. scripts/bash/DX%20Setup/ant.sh
+runAntChecks
