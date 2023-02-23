@@ -13,3 +13,7 @@ runJavaChecks
 # Run Ant checks
 . scripts/bash/DX%20Setup/ant.sh
 runAntChecks
+
+# Run VS Code checks
+. scripts/bash/DX%20Setup/vscode.sh
+runVSCodeChecks
