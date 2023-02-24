@@ -17,3 +17,7 @@ runAntChecks
 # Run VS Code checks
 . scripts/bash/DX%20Setup/vscode.sh
 runVSCodeChecks
+
+# Run OpenSSL checks
+. scripts/bash/DX%20Setup/openssl.sh
+runOpenSSlChecks
