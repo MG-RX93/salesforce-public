@@ -11,6 +11,7 @@ function runVSCodeChecks() {
     echo "$(tput setaf 2)Installing vscode..."
     brew cask install visual-studio-code
 
+    # @RelatedArticle: https://code.visualstudio.com/docs/editor/command-line#_working-with-extensions
     echo
     echo "$(tput setaf 2)Installing Extensions!"
     code --install-extension chuckjonas.apex-pmd
