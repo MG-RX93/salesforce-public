@@ -1,8 +1,10 @@
 #!/bin/bash
 function runGitChecks() {
-  echo "-------------------------------------------------------------------------------------------------------------------------"
-  echo
-  echo "$(tput setaf 3)Running git Checks"
+  echo "$(tput setaf 3)-----------------------------------"
+  echo "$(tput setaf 3)|                                 |"
+  echo "$(tput setaf 3)|           Git Checks            |"
+  echo "$(tput setaf 3)|                                 |"
+  echo "$(tput setaf 3)-----------------------------------"
   tput setaf 6
   #checking to see if salesforce sfdx CLI exists and if not, install it.
   git --version
@@ -16,5 +18,5 @@ function runGitChecks() {
     echo "$(tput setaf 2)git's already installed!!!..."
   fi
   echo
-  echo "-------------------------------------------------------------------------------------------------------------------------"
+  tput setaf 7
 }

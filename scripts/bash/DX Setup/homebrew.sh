@@ -1,9 +1,10 @@
 #!/bin/bash
 function runHomebrewChecks() {
-  echo "-------------------------------------------------------------------------------------------------------------------------"
-  echo
-  echo "$(tput setaf 3)Running Homebrew Checks"
-  #checking to see if brew exists and if not, install it.
+  echo "$(tput setaf 3)-----------------------------------"
+  echo "$(tput setaf 3)|                                 |"
+  echo "$(tput setaf 3)|          Brew Checks            |"
+  echo "$(tput setaf 3)|                                 |"
+  echo "$(tput setaf 3)-----------------------------------"
   tput setaf 6
   which -s brew
   if [[ $? != 0 ]]; then
@@ -18,5 +19,5 @@ function runHomebrewChecks() {
     # brew upgrade
   fi
   echo
-  echo "-------------------------------------------------------------------------------------------------------------------------"
+  tput setaf 7
 }
