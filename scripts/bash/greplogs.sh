@@ -1,9 +1,13 @@
 #!/bin/bash
-# Stream logs
-sfdx apex tail log -c --loglevel=debug -d=Debug -o "$orgName" | tee ~/Desktop/PTLogsDump/"$descriptivename".log
 
+read -p "Enter org name(avoid spaces): " orgName
+read -p "Enter file name(avoid spaces): " fileName
+# Stream logs
+sfdx apex tail log -c --loglevel=debug -d=Debug -o "$orgName" | tee ~/Desktop/PTLogsDump/"$fileName".log
+
+read -p "Enter Test Class name(avoid spaces): " testClassName
 # Run unit tests
-sfdx force:apex:test:run -n "$TestClassName" -o "$orgName" -r json
+sfdx force:apex:test:run -n "$testClassName" -o "$orgName" -r json
 
 
 
@@ -33,5 +37,5 @@ do
     # https://stackoverflow.com/questions/4168371/how-can-i-remove-all-text-after-a-character-in-bash
     # https://tecadmin.net/linux-jq-command/
     # https://stackoverflow.com/questions/51183073/extract-json-data-from-log-file
-    cat $f | grep -o '{".*}' | jq '.' | tee "${f%.log}".json
+    cat $f | grep -o '{".*}' | jq '.' | tee ~/Desktop/PTLogs/json/"${f%.log}".json
 done
