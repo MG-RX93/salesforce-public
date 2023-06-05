@@ -1,36 +1,56 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>*</members>
+        <members>CaseTriggerDispatcher</members>
+        <members>CaseTriggerHandler</members>
+        <members>PerformanceUtil</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexComponent</name>
+        <members>PerformanceLog__c</members>
+        <members>PerformanceMeta__mdt</members>
+        <name>CustomObject</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexPage</name>
+        <members>PerformanceLog__c.ApexClass__c</members>
+        <members>PerformanceLog__c.ApexExecContext__c</members>
+        <members>PerformanceLog__c.ApexMethod__c</members>
+        <members>PerformanceLog__c.ApexSObject__c</members>
+        <members>PerformanceLog__c.CPUTime_Left_percentage__c</members>
+        <members>PerformanceLog__c.CPU_Time_Used__c</members>
+        <members>PerformanceLog__c.Heap_Size_Left_percentage__c</members>
+        <members>PerformanceLog__c.Heap_Size_Used__c</members>
+        <members>PerformanceLog__c.Queries_Left_percentage__c</members>
+        <members>PerformanceLog__c.Queries_Used__c</members>
+        <members>PerformanceLog__c.RecordsInContext__c</members>
+        <members>PerformanceLog__c.Total_RunTime__c</members>
+        <members>PerformanceLog__c.RequestId__c</members>
+        <members>PerformanceLog__c.Quiddity__c</members>
+        <members>PerformanceLog__c.IsCurrentContextTrigger__c</members>
+        <members>PerformanceLog__c.HeapSize_Limits__c</members>
+        <members>PerformanceLog__c.CPUTime_Limits__c</members>
+        <members>PerformanceLog__c.Query_Limits__c</members>
+        <members>PerformanceMeta__mdt.ProjectName__c</members>
+        <members>PerformanceMeta__mdt.ProjectName__c</members>
+        <members>PerformanceMeta__mdt.ProjectName__c</members>
+        <name>CustomField</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexTestSuite</name>
+        <members>PerformanceLog__c.All</members>
+        <name>ListView</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexTrigger</name>
+        <members>PerformanceLog__c-PerformanceLogLayout</members>
+        <members>PerformanceMeta__mdt-Performance Meta Layout</members>
+        <name>Layout</name>
     </types>
     <types>
-        <members>*</members>
-        <name>AuraDefinitionBundle</name>
+        <members>PerformanceLog__c</members>
+        <name>CustomTab</name>
     </types>
     <types>
-        <members>*</members>
-        <name>LightningComponentBundle</name>
+        <members>PerformanceLog_Sys_Admin</members>
+        <name>PermissionSet</name>
     </types>
-    <types>
-        <members>*</members>
-        <name>StaticResource</name>
-    </types>
-    <version>55.0</version>
+    <version>57.0</version>
 </Package>
