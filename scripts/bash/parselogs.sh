@@ -25,4 +25,5 @@ do
     # https://tecadmin.net/linux-jq-command/
     # https://stackoverflow.com/questions/51183073/extract-json-data-from-log-file
     cat $f | grep -o '{".*}' | jq '.' | tee ~/Desktop/PTLogs/json/"${f%.log}".json
+    # O/p of grep must add commas to the different values it prints or use jq to add commas
 done
