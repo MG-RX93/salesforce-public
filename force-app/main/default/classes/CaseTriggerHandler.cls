@@ -14,7 +14,7 @@ public class CaseTriggerHandler{
   public static void runBeforeUpdate(List<Case> newList, List<Case> oldList, Map<Id, Case> newMap, Map<Id, Case> oldMap) {
     Integer count = 0;
     for(Case c: newList) {
-        while (Limits.getCpuTime() < 5000) {
+        while (Limits.getCpuTime() < 3000) {
         count++;    
         }
       System.debug(c);
@@ -24,7 +24,7 @@ public class CaseTriggerHandler{
   public static void runAfterInsert(List<Case> newList, List<Case> oldList, Map<Id, Case> newMap, Map<Id, Case> oldMap) {
     Integer count = 0;
     for(Case c: newList) {
-      while (Limits.getCpuTime() < 7500) {
+      while (Limits.getCpuTime() < 4500) {
         count++;    
       }
       System.debug(c);
@@ -34,7 +34,7 @@ public class CaseTriggerHandler{
   public static void runAfterUpdate(List<Case> newList, List<Case> oldList, Map<Id, Case> newMap, Map<Id, Case> oldMap) {
     Integer count = 0;
     for(Case c: newList) {
-    while (Limits.getCpuTime() < 9000) {
+    while (Limits.getCpuTime() < 5000) {
         count++;    
       }
       System.debug(c);
