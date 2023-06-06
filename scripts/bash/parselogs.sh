@@ -24,6 +24,9 @@ do
     # https://stackoverflow.com/questions/4168371/how-can-i-remove-all-text-after-a-character-in-bash
     # https://tecadmin.net/linux-jq-command/
     # https://stackoverflow.com/questions/51183073/extract-json-data-from-log-file
-    cat $f | grep -o '{".*}' | jq '.' | tee ~/Desktop/PTLogs/json/"${f%.log}".json
+    grepop=$(cat $f | grep -o '{".*}' | sed -e 's/$/,/' -e '$s/,$//')
+    op="[${grepop}]"
+    echo $op | jq '.' | tee ~/Desktop/PTLogs/json/"${f%.log}".json
+
     # O/p of grep must add commas to the different values it prints or use jq to add commas
 done
