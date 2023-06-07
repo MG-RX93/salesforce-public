@@ -31,7 +31,7 @@ public class DataDog {
         'limits.left(%).cpu_time_left' => String.valueOf(pl.CPUTime_Left_percentage__c),
         'limits.left(%).heap_size_left' => String.valueOf(pl.Heap_Size_Left_percentage__c),
         'transaction.quiddity' => String.valueOf(pl.Quiddity__c),
-        'transaction.request_Id' => String.valueOf(pl.RequestId__c),
+        'request_id' => String.valueOf(pl.RequestId__c),
         'transaction.is_current_context_trigger' => String.valueOf(pl.IsCurrentContextTrigger__c)
     });
     // System.debug('JSON o/p:'+jsonBody);
