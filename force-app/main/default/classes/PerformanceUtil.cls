@@ -56,7 +56,7 @@ public class PerformanceUtil {
     pl.IsCurrentContextTrigger__c = currentContext;
     insert pl;
     System.debug('Sync Log: '+JSON.serialize(getJSON(pl)));
-    // callDataDogPost(JSON.serialize(pl));
+    callDataDogPost(JSON.serialize(pl));
     // System.debug('queryCount% left: '+ (queryCountUsedPercent)*100 + '%');
     // System.debug('cpuTime% left: '+ (cpuTimeUsedPercent)*100+ '%');
     // System.debug('heapSize% left: '+(heapSizeUsedPercent)*100+ '%'); 
@@ -88,7 +88,7 @@ public class PerformanceUtil {
     pl.IsCurrentContextTrigger__c = currentContext;
     insert pl;
     System.debug('Async Log: '+JSON.serialize(getJSON(pl)));
-    // callDataDogPost(JSON.serialize(pl));
+    callDataDogPost(JSON.serialize(pl));
     
 
     // System.debug('queryCount % left: '+ (queryCountUsedPercent)*100 + '%');
