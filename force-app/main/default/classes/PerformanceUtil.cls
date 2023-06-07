@@ -104,7 +104,7 @@ public class PerformanceUtil {
     gen.writeFieldName('transaction_info');
     gen.writeStartObject();
     gen.writeStringField('is_CurrentContext_Trigger', String.valueOf(pl.IsCurrentContextTrigger__c));
-    gen.writeStringField('quiddity', String.valueOf(pl.Quiddity__c));
+    gen.writeStringField('transaction_quiddity', String.valueOf(pl.Quiddity__c));
     gen.writeStringField('requestId', String.valueOf(pl.RequestId__c));
     gen.writeStringField('timestamp', String.valueOf(System.now()));
     gen.writeEndObject();
@@ -142,8 +142,8 @@ public class PerformanceUtil {
     gen.writeStringField('records_in_context', String.valueOf(pl.RecordsInContext__c));
     gen.writeStringField('execution_context', String.valueOf(pl.ApexExecContext__c));
     gen.writeStringField('method', String.valueOf(pl.ApexMethod__c));
-    gen.writeStringField('class', String.valueOf(pl.ApexClass__c));
-    gen.writeStringField('object', String.valueOf(pl.ApexSObject__c));
+    gen.writeStringField('class_name', String.valueOf(pl.ApexClass__c));
+    gen.writeStringField('object_name', String.valueOf(pl.ApexSObject__c));
     gen.writeEndObject();
     gen.writeEndObject();
     String jsonData = gen.getAsString();

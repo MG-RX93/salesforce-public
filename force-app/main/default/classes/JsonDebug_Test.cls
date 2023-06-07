@@ -42,8 +42,8 @@ public class JsonDebug_Test {
 		'    \"records_in_context\": \"1\",'+
 		'    \"execution_context\": \"AFTER_UPDATE\",'+
 		'    \"method\": \"All\",'+
-		'    \"class\": \"All\",'+
-		'    \"object\": \"Case\"'+
+		'    \"class_name\": \"All\",'+
+		'    \"object_name\": \"Case\"'+
 		'  }'+
 		'}';
 		JsonDebug r = JsonDebug.parse(json);
@@ -84,7 +84,7 @@ public class JsonDebug_Test {
 		System.assert(objTotal != null);
 		System.assert(objTotal.heap_size_total == null);
 		System.assert(objTotal.cpu_time_total == null);
-		System.assert(objTotal.tal_queries_total == null);
+		System.assert(objTotal.queries_total == null);
 
 		json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
 		JsonDebug.Transaction_info objTransaction_info = new JsonDebug.Transaction_info(System.JSON.createParser(json));
@@ -100,8 +100,8 @@ public class JsonDebug_Test {
 		System.assert(objTrigger_info.records_in_context == null);
 		System.assert(objTrigger_info.execution_context == null);
 		System.assert(objTrigger_info.method == null);
-		System.assert(objTrigger_info.class_Z == null);
-		System.assert(objTrigger_info.object_Z == null);
+		System.assert(objTrigger_info.class_name == null);
+		System.assert(objTrigger_info.object_name == null);
 
 		json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
 		JsonDebug objJsonDebug = new JsonDebug(System.JSON.createParser(json));

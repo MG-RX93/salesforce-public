@@ -120,7 +120,7 @@ public class JsonDebug {
 	public class Total {
 		public String heap_size_total {get;set;} 
 		public String cpu_time_total {get;set;} 
-		public String tal_queries_total {get;set;} // in json: tal.queries_total
+		public String queries_total {get;set;} // in json: tal.queries_total
 
 		public Total(JSONParser parser) {
 			while (parser.nextToken() != System.JSONToken.END_OBJECT) {
@@ -131,8 +131,8 @@ public class JsonDebug {
 							heap_size_total = parser.getText();
 						} else if (text == 'cpu_time_total') {
 							cpu_time_total = parser.getText();
-						} else if (text == 'tal.queries_total') {
-							tal_queries_total = parser.getText();
+						} else if (text == 'queries_total') {
+							queries_total = parser.getText();
 						} else {
 							System.debug(LoggingLevel.WARN, 'Total consuming unrecognized property: '+text);
 							consumeObject(parser);
@@ -156,7 +156,7 @@ public class JsonDebug {
 					if (parser.nextToken() != System.JSONToken.VALUE_NULL) {
 						if (text == 'is_CurrentContext_Trigger') {
 							is_CurrentContext_Trigger = parser.getText();
-						} else if (text == 'transaction.quiddity') {
+						} else if (text == 'transaction.transaction_quiddity') {
 							transaction_quiddity = parser.getText();
 						} else if (text == 'requestId') {
 							requestId = parser.getText();
@@ -176,8 +176,8 @@ public class JsonDebug {
 		public String records_in_context {get;set;} 
 		public String execution_context {get;set;} 
 		public String method {get;set;} 
-		public String class_Z {get;set;} // in json: class
-		public String object_Z {get;set;} // in json: object
+		public String class_name {get;set;} // in json: class
+		public String object_name {get;set;} // in json: object
 
 		public Trigger_info(JSONParser parser) {
 			while (parser.nextToken() != System.JSONToken.END_OBJECT) {
@@ -191,9 +191,9 @@ public class JsonDebug {
 						} else if (text == 'method') {
 							method = parser.getText();
 						} else if (text == 'class') {
-							class_Z = parser.getText();
+							class_name = parser.getText();
 						} else if (text == 'object') {
-							object_Z = parser.getText();
+							object_name = parser.getText();
 						} else {
 							System.debug(LoggingLevel.WARN, 'Trigger_info consuming unrecognized property: '+text);
 							consumeObject(parser);
