@@ -1,0 +1,39 @@
+{
+  "user": {
+    "profileId": "00e2E000002KmBiQAK",
+    "orgId": "00D2E000001GjeGUAS",
+    "org_name": "MyCompany",
+    "name": "J R K",
+    "id": "0052E00000JS3ogQAD"
+  },
+  "trigger_info": {
+    "records_in_context": "1",
+    "object_Z": null,
+    "method": "All",
+    "execution_context": "AFTER_UPDATE",
+    "class_Z": null
+  },
+  "transaction_info": {
+    "transaction_quiddity": null,
+    "timestamp": "2023-06-06 16:03:40",
+    "requestId": "TID:73590000005175d57b",
+    "is_CurrentContext_Trigger": "true"
+  },
+  "limits": {
+    "used": {
+      "queries_used": "0",
+      "heap_size_used": "4382",
+      "cpu_time_used": "5001"
+    },
+    "total": {
+      "tal_queries_total": null,
+      "heap_size_total": "6000000",
+      "cpu_time_total": "10000"
+    },
+    "left_percentage": {
+      "queries_left": "100.0",
+      "heap_size_left": "99.92085",
+      "cpu_time_left": "49.99"
+    }
+  }
+}

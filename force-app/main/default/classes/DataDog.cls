@@ -9,19 +9,18 @@ public class DataDog {
         'hostname' => 'Developer Org',
         'message' => String.valueOf(System.now())+'|This is a test',
         'service' => 'Custom Apex',
-        'timestamp' => String.valueOf(System.now()),
-        'user.name' => UserInfo.getName(),
-        'user.id' => UserInfo.getUserId(),
-        'user.profileId' => UserInfo.getProfileId(),
-        'user.org_name' => UserInfo.getOrganizationName(),
-        'user.orgId' => UserInfo.getOrganizationId(),
         'status' => 'Error',
-        'trigger.object' => String.valueOf(pl.ApexSObject__c),
-        'trigger.class' => String.valueOf(pl.ApexClass__c),
-        'trigger.method' => String.valueOf(pl.ApexMethod__c),
-        'trigger.execution_context' => String.valueOf(pl.ApexExecContext__c),
+        'timestamp' => String.valueOf(System.now()),
+        'user.user_name' => UserInfo.getName(),
+        'user.user_id' => UserInfo.getUserId(),
+        'user.profile_id' => UserInfo.getProfileId(),
+        'user.organization_name' => UserInfo.getOrganizationName(),
+        'user.organization_id' => UserInfo.getOrganizationId(),
+        'trigger.object_name' => String.valueOf(pl.ApexSObject__c),
+        'trigger.class_name' => String.valueOf(pl.ApexClass__c),
+        'trigger.method_name' => String.valueOf(pl.ApexMethod__c),
+        'trigger.trigger_type' => String.valueOf(pl.ApexExecContext__c),
         'trigger.records_in_context' => String.valueOf(pl.RecordsInContext__c),
-        'transaction.requestId' => String.valueOf(pl.RequestId__c),
         'limits.used.queries_used' => String.valueOf(pl.Queries_Used__c),
         'limits.used.cpu_time_used' => String.valueOf(pl.CPU_Time_Used__c),
         'limits.used.heap_size_used' => String.valueOf(pl.Heap_Size_Used__c),
@@ -32,9 +31,10 @@ public class DataDog {
         'limits.left(%).cpu_time_left' => String.valueOf(pl.CPUTime_Left_percentage__c),
         'limits.left(%).heap_size_left' => String.valueOf(pl.Heap_Size_Left_percentage__c),
         'transaction.quiddity' => String.valueOf(pl.Quiddity__c),
-        'transaction.is_CurrentContext_Trigger' => String.valueOf(pl.IsCurrentContextTrigger__c)
+        'request_id' => String.valueOf(pl.RequestId__c),
+        'transaction.is_current_context_trigger' => String.valueOf(pl.IsCurrentContextTrigger__c)
     });
-    System.debug('JSON o/p:'+jsonBody);
+    // System.debug('JSON o/p:'+jsonBody);
 
     // Instantiate a new Http object
     Http h = new Http();
