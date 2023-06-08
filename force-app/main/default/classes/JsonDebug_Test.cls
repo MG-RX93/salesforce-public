@@ -9,17 +9,17 @@ public class JsonDebug_Test {
 	static testMethod void testParse() {
 		String json = '{'+
 		'  \"transaction_info\": {'+
-		'    \"is_CurrentContext_Trigger\": \"true\",'+
-		'    \"transaction.quiddity\": \"SYNCHRONOUS\",'+
-		'    \"requestId\": \"TID:814100000020383f03\",'+
+		'    \"is_current_context_trigger\": \"true\",'+
+		'    \"transaction_quiddity\": \"SYNCHRONOUS\",'+
+		'    \"request_id\": \"TID:814100000020383f03\",'+
 		'    \"timestamp\": \"2023-06-06 13:33:00\"'+
 		'  },'+
 		'  \"user\": {'+
-		'    \"orgId\": \"00D2E00237498234eGqsdAS\",'+
-		'    \"org_name\": \"MyCompany\",'+
-		'    \"profileId\": \"dfsdfsdfsf\",'+
-		'    \"id\": \"0052E0008723984273400J98798S3ogQAD\",'+
-		'    \"name\": \"J R K\"'+
+		'    \"organization_id\": \"00D2E00237498234eGqsdAS\",'+
+		'    \"organization_name\": \"MyCompany\",'+
+		'    \"profile_id\": \"dfsdfsdfsf\",'+
+		'    \"user_id\": \"0052E0008723984273400J98798S3ogQAD\",'+
+		'    \"user_name\": \"J R K\"'+
 		'  },'+
 		'  \"limits\": {'+
 		'    \"left_percentage\": {'+
@@ -30,7 +30,7 @@ public class JsonDebug_Test {
 		'    \"total\":{'+
 		'      \"heap_size_total\": \"6000000\",'+
 		'      \"cpu_time_total\": \"10000\",'+
-		'      \"tal.queries_total\": \"100\"'+
+		'      \"queries_total\": \"100\"'+
 		'    },'+
 		'    \"used\":{'+
 		'      \"heap_size_used\": \"2705\",'+
@@ -40,8 +40,8 @@ public class JsonDebug_Test {
 		'  },'+
 		'  \"trigger_info\": {'+
 		'    \"records_in_context\": \"1\",'+
-		'    \"execution_context\": \"AFTER_UPDATE\",'+
-		'    \"method\": \"All\",'+
+		'    \"trigger_type\": \"AFTER_UPDATE\",'+
+		'    \"method_name\": \"All\",'+
 		'    \"class_name\": \"All\",'+
 		'    \"object_name\": \"Case\"'+
 		'  }'+
@@ -59,11 +59,11 @@ public class JsonDebug_Test {
 		json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
 		JsonDebug.User objUser = new JsonDebug.User(System.JSON.createParser(json));
 		System.assert(objUser != null);
-		System.assert(objUser.orgId == null);
-		System.assert(objUser.org_name == null);
-		System.assert(objUser.profileId == null);
-		System.assert(objUser.id == null);
-		System.assert(objUser.name == null);
+		System.assert(objUser.organization_id == null);
+		System.assert(objUser.organization_name == null);
+		System.assert(objUser.profile_id == null);
+		System.assert(objUser.user_id == null);
+		System.assert(objUser.user_name == null);
 
 		json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
 		JsonDebug.Limits objLimits = new JsonDebug.Limits(System.JSON.createParser(json));
@@ -89,17 +89,17 @@ public class JsonDebug_Test {
 		json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
 		JsonDebug.Transaction_info objTransaction_info = new JsonDebug.Transaction_info(System.JSON.createParser(json));
 		System.assert(objTransaction_info != null);
-		System.assert(objTransaction_info.is_CurrentContext_Trigger == null);
+		System.assert(objTransaction_info.is_current_context_trigger == null);
 		System.assert(objTransaction_info.transaction_quiddity == null);
-		System.assert(objTransaction_info.requestId == null);
+		System.assert(objTransaction_info.request_id == null);
 		System.assert(objTransaction_info.timestamp == null);
 
 		json = '{\"TestAMissingObject\": { \"TestAMissingArray\": [ { \"TestAMissingProperty\": \"Some Value\" } ] } }';
 		JsonDebug.Trigger_info objTrigger_info = new JsonDebug.Trigger_info(System.JSON.createParser(json));
 		System.assert(objTrigger_info != null);
 		System.assert(objTrigger_info.records_in_context == null);
-		System.assert(objTrigger_info.execution_context == null);
-		System.assert(objTrigger_info.method == null);
+		System.assert(objTrigger_info.trigger_type == null);
+		System.assert(objTrigger_info.method_name == null);
 		System.assert(objTrigger_info.class_name == null);
 		System.assert(objTrigger_info.object_name == null);
 

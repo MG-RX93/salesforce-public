@@ -56,7 +56,7 @@ public class PerformanceUtil {
     pl.IsCurrentContextTrigger__c = currentContext;
     insert pl;
     System.debug('Sync Log: '+JSON.serialize(getJSON(pl)));
-    callDataDogPost(JSON.serialize(pl));
+    // callDataDogPost(JSON.serialize(pl));
     // System.debug('queryCount% left: '+ (queryCountUsedPercent)*100 + '%');
     // System.debug('cpuTime% left: '+ (cpuTimeUsedPercent)*100+ '%');
     // System.debug('heapSize% left: '+(heapSizeUsedPercent)*100+ '%'); 
@@ -88,7 +88,7 @@ public class PerformanceUtil {
     pl.IsCurrentContextTrigger__c = currentContext;
     insert pl;
     System.debug('Async Log: '+JSON.serialize(getJSON(pl)));
-    callDataDogPost(JSON.serialize(pl));
+    // callDataDogPost(JSON.serialize(pl));
     
 
     // System.debug('queryCount % left: '+ (queryCountUsedPercent)*100 + '%');
@@ -103,18 +103,18 @@ public class PerformanceUtil {
     gen.writeStartObject();     
     gen.writeFieldName('transaction_info');
     gen.writeStartObject();
-    gen.writeStringField('is_CurrentContext_Trigger', String.valueOf(pl.IsCurrentContextTrigger__c));
+    gen.writeStringField('is_current_context_trigger', String.valueOf(pl.IsCurrentContextTrigger__c));
     gen.writeStringField('transaction_quiddity', String.valueOf(pl.Quiddity__c));
-    gen.writeStringField('requestId', String.valueOf(pl.RequestId__c));
+    gen.writeStringField('request_id', String.valueOf(pl.RequestId__c));
     gen.writeStringField('timestamp', String.valueOf(System.now()));
     gen.writeEndObject();
     gen.writeFieldName('user');
     gen.writeStartObject();
-    gen.writeStringField('orgId', UserInfo.getOrganizationId());
-    gen.writeStringField('org_name', UserInfo.getOrganizationName());
-    gen.writeStringField('profileId', UserInfo.getProfileId());
-    gen.writeStringField('id', UserInfo.getUserId());
-    gen.writeStringField('name', UserInfo.getName());
+    gen.writeStringField('organization_id', UserInfo.getOrganizationId());
+    gen.writeStringField('organization_name', UserInfo.getOrganizationName());
+    gen.writeStringField('profile_id', UserInfo.getProfileId());
+    gen.writeStringField('user_id', UserInfo.getUserId());
+    gen.writeStringField('user_name', UserInfo.getName());
     gen.writeEndObject();
     gen.writeFieldName('limits');
     gen.writeStartObject();
@@ -140,8 +140,8 @@ public class PerformanceUtil {
     gen.writeFieldName('trigger_info');
     gen.writeStartObject();
     gen.writeStringField('records_in_context', String.valueOf(pl.RecordsInContext__c));
-    gen.writeStringField('execution_context', String.valueOf(pl.ApexExecContext__c));
-    gen.writeStringField('method', String.valueOf(pl.ApexMethod__c));
+    gen.writeStringField('trigger_type', String.valueOf(pl.ApexExecContext__c));
+    gen.writeStringField('method_name', String.valueOf(pl.ApexMethod__c));
     gen.writeStringField('class_name', String.valueOf(pl.ApexClass__c));
     gen.writeStringField('object_name', String.valueOf(pl.ApexSObject__c));
     gen.writeEndObject();

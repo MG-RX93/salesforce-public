@@ -34,27 +34,27 @@ public class JsonDebug {
 	}
 	
 	public class User {
-		public String orgId {get;set;} 
-		public String org_name {get;set;} 
-		public String profileId {get;set;} 
-		public String id {get;set;} 
-		public String name {get;set;} 
+		public String organization_id {get;set;} 
+		public String organization_name {get;set;} 
+		public String profile_id {get;set;} 
+		public String user_id {get;set;} 
+		public String user_name {get;set;} 
 
 		public User(JSONParser parser) {
 			while (parser.nextToken() != System.JSONToken.END_OBJECT) {
 				if (parser.getCurrentToken() == System.JSONToken.FIELD_NAME) {
 					String text = parser.getText();
 					if (parser.nextToken() != System.JSONToken.VALUE_NULL) {
-						if (text == 'orgId') {
-							orgId = parser.getText();
-						} else if (text == 'org_name') {
-							org_name = parser.getText();
-						} else if (text == 'profileId') {
-							profileId = parser.getText();
-						} else if (text == 'id') {
-							id = parser.getText();
-						} else if (text == 'name') {
-							name = parser.getText();
+						if (text == 'organization_id') {
+							organization_id = parser.getText();
+						} else if (text == 'organization_name') {
+							organization_name = parser.getText();
+						} else if (text == 'profile_id') {
+							profile_id = parser.getText();
+						} else if (text == 'user_id') {
+							user_id = parser.getText();
+						} else if (text == 'user_name') {
+							user_name = parser.getText();
 						} else {
 							System.debug(LoggingLevel.WARN, 'User consuming unrecognized property: '+text);
 							consumeObject(parser);
@@ -144,9 +144,9 @@ public class JsonDebug {
 	}
 	
 	public class Transaction_info {
-		public String is_CurrentContext_Trigger {get;set;} 
+		public String is_current_context_trigger {get;set;} 
 		public String transaction_quiddity {get;set;} // in json: transaction.quiddity
-		public String requestId {get;set;} 
+		public String request_id {get;set;} 
 		public String timestamp {get;set;} 
 
 		public Transaction_info(JSONParser parser) {
@@ -154,12 +154,12 @@ public class JsonDebug {
 				if (parser.getCurrentToken() == System.JSONToken.FIELD_NAME) {
 					String text = parser.getText();
 					if (parser.nextToken() != System.JSONToken.VALUE_NULL) {
-						if (text == 'is_CurrentContext_Trigger') {
-							is_CurrentContext_Trigger = parser.getText();
-						} else if (text == 'transaction.transaction_quiddity') {
+						if (text == 'is_current_context_trigger') {
+							is_current_context_trigger = parser.getText();
+						} else if (text == 'transaction_quiddity') {
 							transaction_quiddity = parser.getText();
-						} else if (text == 'requestId') {
-							requestId = parser.getText();
+						} else if (text == 'request_id') {
+							request_id = parser.getText();
 						} else if (text == 'timestamp') {
 							timestamp = parser.getText();
 						} else {
@@ -174,8 +174,8 @@ public class JsonDebug {
 	
 	public class Trigger_info {
 		public String records_in_context {get;set;} 
-		public String execution_context {get;set;} 
-		public String method {get;set;} 
+		public String trigger_type {get;set;} 
+		public String method_name {get;set;} 
 		public String class_name {get;set;} // in json: class
 		public String object_name {get;set;} // in json: object
 
@@ -186,13 +186,13 @@ public class JsonDebug {
 					if (parser.nextToken() != System.JSONToken.VALUE_NULL) {
 						if (text == 'records_in_context') {
 							records_in_context = parser.getText();
-						} else if (text == 'execution_context') {
-							execution_context = parser.getText();
-						} else if (text == 'method') {
-							method = parser.getText();
-						} else if (text == 'class') {
+						} else if (text == 'trigger_type') {
+							trigger_type = parser.getText();
+						} else if (text == 'method_name') {
+							method_name = parser.getText();
+						} else if (text == 'class_name') {
 							class_name = parser.getText();
-						} else if (text == 'object') {
+						} else if (text == 'object_name') {
 							object_name = parser.getText();
 						} else {
 							System.debug(LoggingLevel.WARN, 'Trigger_info consuming unrecognized property: '+text);
