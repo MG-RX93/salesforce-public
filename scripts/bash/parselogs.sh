@@ -1,10 +1,4 @@
 #!/bin/bash
-# bulk parse logs 
-
-# 
-# time="00:20:40:300"
-# seconds=$(echo $time | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }')
-# echo $seconds
 
 function runTime() { 
     runTime=$(echo "$1,$2,$3" | awk -F, '{ print (($1 - $2) * $3)}')
@@ -15,13 +9,13 @@ pushd ~/Desktop/PTLogs
 
 # https://linuxhint.com/bash-for-loop-examples/
 
-# for f in *.log
-# do
-#     # Print the string value
-#     # https://www.linode.com/docs/guides/how-to-grep-for-text-in-files/
-#     echo $f
-#     cat $f | sed '/^[[:space:]]*$/d' | tee ./nonewline/$f
-# done
+for f in *.log
+do
+    # Print the string value
+    # https://www.linode.com/docs/guides/how-to-grep-for-text-in-files/
+    echo $f
+    cat $f | sed '/^[[:space:]]*$/d' | tee ./nonewline/$f
+done
 
 declare -A runTime_log_array
 
@@ -53,14 +47,6 @@ do
     echo "${runTime_log_array["${f%.*}"]}" # Value for the passed key
     grepop=$(cat $f | grep -o '{".*}')
     echo $grepop | jq -s . | tee ~/Desktop/PTLogs/json/"${f%.log}".json
-
-    # jq -n --arg run_time "${runTime_log_array["${f%.*}"]}" --arg transaction_output "[]" '{
-    # "run_time": $run_time,
-    # "transaction_output": $transaction_output}' | tee ~/Desktop/PTLogs/fullJson/"${f%.log}".json
-
-    # jq --argjson transaction_op "$(<~/Desktop/PTLogs/halfJson/"${f%.log}".json)" '.transaction_output += $transaction_op' ~/Desktop/PTLogs/fullJson/"${f%.log}".json
-
-    # O/p of grep must add commas to the different values it prints or use jq to add commas
 done
 
 pushd ~/Desktop/PTLogs/json/
