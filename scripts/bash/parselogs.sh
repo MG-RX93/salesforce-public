@@ -33,7 +33,6 @@ do
     echo $f
     startTime=$(sed -n '2p' $f | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 + ($4 / 1000)}')
     endTime=$(sed -n '$p' $f | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 + ($4 / 1000)}')
-    # cpuTime=$(echo "$endTime,$startTime,1000" | awk -F, '{ print (($1 - $2) * $3)}')
     runTime=$(runTime "$endTime,$startTime,1000")
     echo "$runTime"
     runTime_log_array["${f%.*}"]="$runTime"
@@ -53,14 +52,22 @@ do
     # https://stackoverflow.com/questions/51183073/extract-json-data-from-log-file
     echo "${runTime_log_array["${f%.*}"]}" # Value for the passed key
     grepop=$(cat $f | grep -o '{".*}')
-    echo $grepop | jq -s . | tee ~/Desktop/PTLogs/halfJson/"${f%.log}".json
+    echo $grepop | jq -s . | tee ~/Desktop/PTLogs/json/"${f%.log}".json
 
-    jq -n --arg run_time "${runTime_log_array["${f%.*}"]}" --arg transaction_output "[]" '{
-    "run_time": $run_time,
-    "transaction_output": $transaction_output}' | tee ~/Desktop/PTLogs/fullJson/"${f%.log}".json
+    # jq -n --arg run_time "${runTime_log_array["${f%.*}"]}" --arg transaction_output "[]" '{
+    # "run_time": $run_time,
+    # "transaction_output": $transaction_output}' | tee ~/Desktop/PTLogs/fullJson/"${f%.log}".json
 
-    jq --argjson transaction_op "$(<~/Desktop/PTLogs/halfJson/"${f%.log}".json)" '.transaction_output += $transaction_op' ~/Desktop/PTLogs/fullJson/"${f%.log}".json
+    # jq --argjson transaction_op "$(<~/Desktop/PTLogs/halfJson/"${f%.log}".json)" '.transaction_output += $transaction_op' ~/Desktop/PTLogs/fullJson/"${f%.log}".json
 
     # O/p of grep must add commas to the different values it prints or use jq to add commas
 done
 
+pushd ~/Desktop/PTLogs/json/
+
+for f in *.json
+do
+    jq -c '.[]' $f | while read i; do
+        echo $i
+    done
+done
