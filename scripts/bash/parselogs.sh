@@ -33,20 +33,17 @@ do
     cat $f | grep -E "USER_DEBUG|FATAL_ERROR|EXCEPTION_THROWN|_ERROR" | tee .././grep/$f
 done
 
-# 
 pushd ~/Desktop/PTLogs/grep/
 
-# 
 for f in *.log
 do
-    # 
     echo $f
     # https://stackoverflow.com/questions/4168371/how-can-i-remove-all-text-after-a-character-in-bash
     # https://tecadmin.net/linux-jq-command/
     # https://stackoverflow.com/questions/51183073/extract-json-data-from-log-file
     echo "${runTime_log_array["${f%.*}"]}" # Value for the passed key
     grepop=$(cat $f | grep -o '{".*}')
-    echo $grepop | jq -s . | tee ~/Desktop/PTLogs/json/"${f%.log}".json
+    echo $grepop | jq -s . | tee ~/Desktop/PTLogs/json/first/"${f%.log}".json
 done
 
 pushd ~/Desktop/PTLogs/json/
