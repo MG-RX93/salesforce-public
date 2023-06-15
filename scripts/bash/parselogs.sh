@@ -55,6 +55,12 @@ do
     grepop=$(cat $f | grep -o '{".*}')
     echo $grepop | jq -s . | tee ~/Desktop/PTLogs/halfJson/"${f%.log}".json
 
+    jq -n --arg run_time "${runTime_log_array["${f%.*}"]}" --arg transaction_output "[]" '{
+    "run_time": $run_time,
+    "transaction_output": $transaction_output}' | tee ~/Desktop/PTLogs/fullJson/"${f%.log}".json
+
+    jq --argjson transaction_op "$(<~/Desktop/PTLogs/halfJson/"${f%.log}".json)" '.transaction_output += $transaction_op' ~/Desktop/PTLogs/fullJson/"${f%.log}".json
+
     # O/p of grep must add commas to the different values it prints or use jq to add commas
 done
 
