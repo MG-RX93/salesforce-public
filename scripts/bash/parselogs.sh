@@ -68,6 +68,8 @@ pushd ~/Desktop/PTLogs/json/
 for f in *.json
 do
     jq -c '.[]' $f | while read i; do
-        echo $i
+        # Print individual objects within the json array
+        jsonObj=$(echo $i)
+        echo $jsonObj
     done
 done
