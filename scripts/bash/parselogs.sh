@@ -46,7 +46,7 @@ do
     echo $grepop | jq -s . | tee ~/Desktop/PTLogs/json/first/"${f%.log}".json
 done
 
-pushd ~/Desktop/PTLogs/json/
+pushd ~/Desktop/PTLogs/json/first/
 
 for f in *.json
 do
@@ -54,8 +54,13 @@ do
         # Print individual objects within the json array
         jsonObj=$(echo $i)
         echo $jsonObj
+
         # Print the trigger type value
-        jsonValue=$(echo $jsonObj | jq '.trigger_info.trigger_type')
+        jsonValue=$(echo $jsonObj | jq '.trigger_info.trigger_type' | sed -e 's/^"//' -e 's/"$//')
         echo $jsonValue
+        
+        # Append trigger type to file name
+        echo $jsonObj | jq . | tee ~/Desktop/PTLogs/json/second/"${f%.json}_$jsonValue".json
+
     done
 done
