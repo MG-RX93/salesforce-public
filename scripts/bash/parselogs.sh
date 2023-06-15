@@ -64,3 +64,10 @@ do
 
     done
 done
+
+pushd ~/Desktop/PTLogs/json/second/
+for f in *.json
+do
+    runTimeValue=$(echo "${runTime_log_array["${f%.*}"]}")
+    cat $f | jq --arg r "${runTimeValue}" '.transaction_info.runtime += $r' | tee ~/Desktop/PTLogs/json/final/"${f}"
+done
