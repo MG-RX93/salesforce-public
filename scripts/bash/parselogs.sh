@@ -71,5 +71,8 @@ do
         # Print individual objects within the json array
         jsonObj=$(echo $i)
         echo $jsonObj
+        # Print the trigger type value
+        jsonValue=$(echo $jsonObj | jq '.trigger_info.trigger_type')
+        echo $jsonValue
     done
 done
