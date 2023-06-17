@@ -28,7 +28,7 @@ pushd ~/Desktop/PTLogs/nonewline
 for f in *.log
 do
     # Print the string value
-    echo $f
+    # echo $f
     startTime=$(sed -n '2p' $f | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 + ($4 / 1000)}')
     endTime=$(sed -n '$p' $f | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 + ($4 / 1000)}')
     runTime=$(runTime "$endTime,$startTime,1000")
@@ -44,7 +44,7 @@ pushd ~/Desktop/PTLogs/grep/
 # Convert grepop to json & create a processed json file.
 for f in *.log
 do
-    echo $f
+    # echo $f
     echo "${runTime_log_array["${f%.*}"]}" # Value for the passed key
     grepop=$(cat $f | grep -o '{".*}')
     echo $grepop | jq -s . | tee ~/Desktop/PTLogs/json/first/"${f%.log}".json
@@ -59,11 +59,11 @@ do
     jq -c '.[]' $f | while read i; do
         # Print individual objects within the json array
         jsonObj=$(echo $i)
-        echo $jsonObj
+        # echo $jsonObj
 
         # Print the trigger type value
         jsonValue=$(echo $jsonObj | jq '.trigger_info.trigger_type' | sed -e 's/^"//' -e 's/"$//')
-        echo $jsonValue
+        # echo $jsonValue
         
         # Append trigger type to file name
         echo $jsonObj | jq . | tee ~/Desktop/PTLogs/json/second/"${f%.json}_$jsonValue".json
