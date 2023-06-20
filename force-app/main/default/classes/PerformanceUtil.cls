@@ -20,10 +20,10 @@ public class PerformanceUtil {
     System.debug('CurrentLimits in '+executionContext+'are :'+currentLimits);
     System.debug('Quiddity is: '+Request.getCurrent().getQuiddity());
     switch on Request.getCurrent().getQuiddity() {
-      when SYNCHRONOUS, RUNTEST_SYNC, AURA {
+      when SYNCHRONOUS, RUNTEST_SYNC, RUNTEST_ASYNC, AURA {
         syncLimitsUsage(currentLimits, className, methodName, executionContext , sObjectName, size, currentContext);
       }
-      when BATCH_APEX, RUNTEST_ASYNC, BULK_API, FUTURE {
+      when BATCH_APEX, BULK_API, FUTURE {
         asyncLimitsUsage(currentLimits, className, methodName, executionContext , sObjectName, size, currentContext);
       }
       when else {
