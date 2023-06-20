@@ -3,7 +3,6 @@ name: DX
 on:
   push:
     branches:
-      - feature/PerformanceMonitoring
       - setup/devops
 
 jobs:
