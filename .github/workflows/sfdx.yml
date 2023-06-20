@@ -34,10 +34,10 @@ jobs:
       run: |
         mkdir -p ~/tests/apex
         $SFDX force:apex:test:run -u ${{ secrets.SORG }} -c -r human -d ~/tests/apex -w 9999  
-    - name: Data Tree Import
-      run: $SFDX force:data:tree:import -p data/plan1.json -u ${{ secrets.SORG }}
-    - name: SOQL Query
-      run: $SFDX force:data:soql:query -q "SELECT Id, Name FROM Account"
+    # - name: Data Tree Import
+    #   run: $SFDX force:data:tree:import -p data/plan1.json -u ${{ secrets.SORG }}
+    # - name: SOQL Query
+    #   run: $SFDX force:data:soql:query -q "SELECT Id, Name FROM Account"
     - name: Pull Source
       run: $SFDX force:source:pull -u ${{ secrets.SORG }}
     - name: CleanUp
