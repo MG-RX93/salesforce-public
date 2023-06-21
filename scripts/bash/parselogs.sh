@@ -62,7 +62,7 @@ do
         # echo $jsonObj
 
         # Print the trigger type value
-        jsonValue=$(echo $jsonObj | jq '.trigger_info.trigger_type' | sed -e 's/^"//' -e 's/"$//')
+        jsonValue=$(echo $jsonObj | jq '.trigger_type' | sed -e 's/^"//' -e 's/"$//')
         # echo $jsonValue
         
         # Append trigger type to file name
@@ -78,5 +78,5 @@ pushd ~/Desktop/PTLogs/json/second/
 for f in *.json
 do
     runTimeValue=$(echo "${runTime_log_array["${f%.*}"]}")
-    cat $f | jq --arg r "${runTimeValue}" '.transaction_info.runtime += $r' | tee ~/Desktop/PTLogs/json/final/"${f}"
+    cat $f | jq --arg r "${runTimeValue}" '.runtime += $r' | tee ~/Desktop/PTLogs/json/final/"${f}"
 done
