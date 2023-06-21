@@ -32,8 +32,9 @@ do
     startTime=$(sed -n '2p' $f | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 + ($4 / 1000)}')
     endTime=$(sed -n '$p' $f | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 + ($4 / 1000)}')
     runTime=$(runTime "$endTime,$startTime,1000")
-    echo "$runTime"
+    # echo "$runTime"
     runTime_log_array["${f%.*}"]="$runTime"
+    echo $runTime_log_array
     cat $f | grep -E "USER_DEBUG|FATAL_ERROR|EXCEPTION_THROWN|_ERROR" | tee .././grep/$f
 done
 
