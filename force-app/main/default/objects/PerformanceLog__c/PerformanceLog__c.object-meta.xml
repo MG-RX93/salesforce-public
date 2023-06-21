@@ -156,7 +156,7 @@
     <label>PerformanceLog</label>
     <nameField>
         <displayFormat>PL-{0000000}</displayFormat>
-        <label>PerformanceLog Name</label>
+        <label>Performance Log Number</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
