@@ -24,7 +24,7 @@ public class CaseTriggerDispatcher{
         }
 
         /**
-        *@Description: Delete Scenario calls.
+        *@Description: Delete Scenario calls
         */
         if(Trigger.isDelete) {
 
