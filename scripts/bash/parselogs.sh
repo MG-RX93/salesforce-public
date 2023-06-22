@@ -69,7 +69,18 @@ do
     # echo "${runTimeArray["${f%.*}"]}" # Value for the passed key
     echo -e "${yellow}Array value:${clear}""${runTimeArray["${f%.*}"]}" # Value for the passed key
     grepop=$(cat $f | grep -o '{".*}')
-    echo $grepop | jq -s . | tee ~/Desktop/PTLogs/json/first/"${f%.log}".json
+    echo $grepop | jq -s . | tee ~/Desktop/PTLogs/json/UnprocessedArrays/"${f%.log}".json
+done
+
+# Change directory
+pushd ~/Desktop/PTLogs/json/UnprocessedArrays/
+for f in *.json
+do
+    jq -c '.[]' $f | while read i; do
+     # Print individual objects within the json array
+        jsonObj=$(echo $i)
+        echo $jsonObj
+    done
 done
 
 # Change directory
