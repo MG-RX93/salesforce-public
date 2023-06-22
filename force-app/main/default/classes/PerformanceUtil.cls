@@ -20,10 +20,10 @@ public class PerformanceUtil {
     System.debug('CurrentLimits in '+executionContext+'are :'+currentLimits);
     System.debug('Quiddity is: '+Request.getCurrent().getQuiddity());
     switch on Request.getCurrent().getQuiddity() {
-      when SYNCHRONOUS, RUNTEST_SYNC, AURA {
+      when SYNCHRONOUS, RUNTEST_SYNC, RUNTEST_ASYNC, AURA {
         syncLimitsUsage(currentLimits, className, methodName, executionContext , sObjectName, size, currentContext);
       }
-      when BATCH_APEX, RUNTEST_ASYNC, BULK_API, FUTURE {
+      when BATCH_APEX, BULK_API, FUTURE {
         asyncLimitsUsage(currentLimits, className, methodName, executionContext , sObjectName, size, currentContext);
       }
       when else {
@@ -37,10 +37,10 @@ public class PerformanceUtil {
     Integer queryCountDivisor = 100, cpuTimeDivisor = 10000, heapSizeDivisor = 6000000;
 
     PerformanceLog__c pl = new PerformanceLog__c();
-    pl.ApexClass__c = className;
-    pl.ApexMethod__c = methodName;
-    pl.ApexExecContext__c = executionContext;
-    pl.ApexSObject__c = sObjectName;
+    pl.class_name__c = className;
+    pl.method_name__c = methodName;
+    pl.trigger_type__c = executionContext;
+    pl.object_name__c = sObjectName;
     pl.Queries_Used__c = getQueriesUsed();
     pl.CPU_Time_Used__c = getCPUTimeUsed();
     pl.Heap_Size_Used__c = getHeapSizeUsed();
@@ -50,11 +50,17 @@ public class PerformanceUtil {
     pl.Queries_Left_percentage__c = getPercentageQueriesLeft(currentLimits, queryCountDivisor);
     pl.CPUTime_Left_percentage__c = getPercentageCPUTimeLeft(currentLimits, cpuTimeDivisor);
     pl.Heap_Size_Left_percentage__c = getPercentageHeapSizeLeft(currentLimits, heapSizeDivisor);
-    pl.RecordsInContext__c = size;
-    pl.RequestId__c = String.valueOf(Request.getCurrent().getRequestId());
-    pl.Quiddity__c = String.valueOf(Request.getCurrent().getQuiddity());
-    pl.IsCurrentContextTrigger__c = currentContext;
+    pl.records_in_context__c = size;
+    pl.request_id__c = String.valueOf(Request.getCurrent().getRequestId());
+    pl.transaction_quiddity__c = String.valueOf(Request.getCurrent().getQuiddity());
+    pl.is_current_context_trigger__c = currentContext;
+    pl.organization_id__c = UserInfo.getOrganizationId();
+    pl.organization_name__c = UserInfo.getOrganizationName();
+    pl.profile_id__c = UserInfo.getProfileId();
+    pl.user_id__c = UserInfo.getUserId();
+    pl.user_name__c = UserInfo.getName();
     insert pl;
+    System.debug('Sync Log record: '+pl);
     System.debug('Sync Log: '+JSON.serialize(getJSON(pl)));
     // callDataDogPost(JSON.serialize(pl));
     // System.debug('queryCount% left: '+ (queryCountUsedPercent)*100 + '%');
@@ -69,10 +75,10 @@ public class PerformanceUtil {
 
     
     PerformanceLog__c pl = new PerformanceLog__c();
-    pl.ApexClass__c = className;
-    pl.ApexMethod__c = methodName;
-    pl.ApexExecContext__c = executionContext;
-    pl.ApexSObject__c = sObjectName;
+    pl.class_name__c = className;
+    pl.method_name__c = methodName;
+    pl.trigger_type__c = executionContext;
+    pl.object_name__c = sObjectName;
     pl.Queries_Used__c = getQueriesUsed();
     pl.CPU_Time_Used__c = getCPUTimeUsed();
     pl.Heap_Size_Used__c = getHeapSizeUsed();
@@ -82,11 +88,17 @@ public class PerformanceUtil {
     pl.Queries_Left_percentage__c = getPercentageQueriesLeft(currentLimits, queryCountDivisor);
     pl.CPUTime_Left_percentage__c = getPercentageCPUTimeLeft(currentLimits, cpuTimeDivisor);
     pl.Heap_Size_Left_percentage__c = getPercentageHeapSizeLeft(currentLimits, heapSizeDivisor);
-    pl.RecordsInContext__c = size;
-    pl.RequestId__c = String.valueOf(Request.getCurrent().getRequestId());
-    pl.Quiddity__c = String.valueOf(Request.getCurrent().getQuiddity());
-    pl.IsCurrentContextTrigger__c = currentContext;
+    pl.records_in_context__c = size;
+    pl.request_id__c = String.valueOf(Request.getCurrent().getRequestId());
+    pl.transaction_quiddity__c = String.valueOf(Request.getCurrent().getQuiddity());
+    pl.is_current_context_trigger__c = currentContext;
+    pl.organization_id__c = UserInfo.getOrganizationId();
+    pl.organization_name__c = UserInfo.getOrganizationName();
+    pl.profile_id__c = UserInfo.getProfileId();
+    pl.user_id__c = UserInfo.getUserId();
+    pl.user_name__c = UserInfo.getName();
     insert pl;
+    System.debug('Async Log record: '+pl);
     System.debug('Async Log: '+JSON.serialize(getJSON(pl)));
     // callDataDogPost(JSON.serialize(pl));
     
@@ -98,56 +110,58 @@ public class PerformanceUtil {
     // Persist all data to an object.
   }
 
-  private static JsonDebug getJSON(PerformanceLog__c pl) {
+  private static JSON2Apex getJSON(PerformanceLog__c pl) {
     JSONGenerator gen = JSON.createGenerator(true);
     gen.writeStartObject();     
-    gen.writeFieldName('transaction_info');
-    gen.writeStartObject();
-    gen.writeStringField('is_current_context_trigger', String.valueOf(pl.IsCurrentContextTrigger__c));
-    gen.writeStringField('transaction_quiddity', String.valueOf(pl.Quiddity__c));
-    gen.writeStringField('request_id', String.valueOf(pl.RequestId__c));
-    gen.writeStringField('timestamp', String.valueOf(System.now()));
-    gen.writeEndObject();
-    gen.writeFieldName('user');
-    gen.writeStartObject();
-    gen.writeStringField('organization_id', UserInfo.getOrganizationId());
-    gen.writeStringField('organization_name', UserInfo.getOrganizationName());
-    gen.writeStringField('profile_id', UserInfo.getProfileId());
-    gen.writeStringField('user_id', UserInfo.getUserId());
-    gen.writeStringField('user_name', UserInfo.getName());
-    gen.writeEndObject();
-    gen.writeFieldName('limits');
-    gen.writeStartObject();
-    gen.writeFieldName('left_percentage');
-    gen.writeStartObject();
-    gen.writeStringField('heap_size_left', String.valueOf(pl.Heap_Size_Left_percentage__c));
-    gen.writeStringField('cpu_time_left', String.valueOf(pl.CPUTime_Left_percentage__c));
-    gen.writeStringField('queries_left', String.valueOf(pl.Queries_Left_percentage__c));
-    gen.writeEndObject();
-    gen.writeFieldName('total');
-    gen.writeStartObject();
-    gen.writeStringField('heap_size_total', String.valueOf(pl.HeapSize_Limits__c));
-    gen.writeStringField('cpu_time_total', String.valueOf(pl.CPUTime_Limits__c));
-    gen.writeStringField('queries_total', String.valueOf(pl.Query_Limits__c));
-    gen.writeEndObject();
-    gen.writeFieldName('used');
-    gen.writeStartObject();
-    gen.writeStringField('heap_size_used', String.valueOf(pl.Heap_Size_Used__c));
-    gen.writeStringField('cpu_time_used', String.valueOf(pl.CPU_Time_Used__c));
-    gen.writeStringField('queries_used', String.valueOf(pl.Queries_Used__c));
-    gen.writeEndObject();
-    gen.writeEndObject();
-    gen.writeFieldName('trigger_info');
-    gen.writeStartObject();
-    gen.writeStringField('records_in_context', String.valueOf(pl.RecordsInContext__c));
-    gen.writeStringField('trigger_type', String.valueOf(pl.ApexExecContext__c));
-    gen.writeStringField('method_name', String.valueOf(pl.ApexMethod__c));
-    gen.writeStringField('class_name', String.valueOf(pl.ApexClass__c));
-    gen.writeStringField('object_name', String.valueOf(pl.ApexSObject__c));
-    gen.writeEndObject();
+    // gen.writeFieldName('transaction_info');
+    // gen.writeStartObject();
+    gen.writeIdField('log_record_id', pl.Id);
+    gen.writeBooleanField('is_current_context_trigger', pl.is_current_context_trigger__c);
+    gen.writeStringField('transaction_quiddity', pl.transaction_quiddity__c);
+    gen.writeStringField('request_id', pl.request_id__c);
+    gen.writeDateTimeField('timestamp', System.now());
+    // gen.writeEndObject();
+    // gen.writeFieldName('user');
+    // gen.writeStartObject();
+    gen.writeIdField('organization_id', pl.organization_id__c);
+    gen.writeStringField('organization_name', pl.organization_name__c);
+    gen.writeIdField('profile_id', pl.profile_id__c);
+    gen.writeIdField('user_id', pl.user_id__c);
+    gen.writeStringField('user_name', pl.user_name__c);
+    // gen.writeEndObject();
+    // gen.writeFieldName('limits');
+    // gen.writeStartObject();
+    // gen.writeFieldName('left_percentage');
+    // gen.writeStartObject();
+    gen.writeNumberField('heap_size_left', pl.Heap_Size_Left_percentage__c);
+    gen.writeNumberField('cpu_time_left', pl.CPUTime_Left_percentage__c);
+    gen.writeNumberField('queries_left', pl.Queries_Left_percentage__c);
+    // gen.writeEndObject();
+    // gen.writeFieldName('total');
+    // gen.writeStartObject();
+    gen.writeNumberField('heap_size_total', pl.HeapSize_Limits__c);
+    gen.writeNumberField('cpu_time_total', pl.CPUTime_Limits__c);
+    gen.writeNumberField('queries_total', pl.Query_Limits__c);
+    // gen.writeEndObject();
+    // gen.writeFieldName('used');
+    // gen.writeStartObject();
+    gen.writeNumberField('heap_size_used', pl.Heap_Size_Used__c);
+    gen.writeNumberField('cpu_time_used', pl.CPU_Time_Used__c);
+    gen.writeNumberField('queries_used', pl.Queries_Used__c);
+    // gen.writeEndObject();
+    // gen.writeEndObject();
+    // gen.writeFieldName('trigger_info');
+    // gen.writeStartObject();
+    gen.writeNumberField('records_in_context', pl.records_in_context__c);
+    gen.writeStringField('trigger_type', pl.trigger_type__c);
+    gen.writeStringField('method_name', pl.method_name__c);
+    gen.writeStringField('class_name', pl.class_name__c);
+    gen.writeStringField('object_name', pl.object_name__c);
+    // gen.writeEndObject();
     gen.writeEndObject();
     String jsonData = gen.getAsString();
-    return (JsonDebug)JSON.deserialize(jsonData, JsonDebug.class);
+    System.debug('jsonGen: '+jsonData);
+    return (JSON2Apex)JSON.deserialize(jsonData, JSON2Apex.class);
   }
 
   @future(callout=true)

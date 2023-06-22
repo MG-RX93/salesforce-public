@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>IsCurrentContextTrigger__c</fullName>
-    <defaultValue>false</defaultValue>
+    <fullName>user_id__c</fullName>
+    <description>Id of the user in context</description>
     <externalId>false</externalId>
-    <label>IsCurrentContextTrigger</label>
+    <label>User Id</label>
+    <length>18</length>
+    <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
+    <type>Text</type>
+    <unique>false</unique>
 </CustomField>

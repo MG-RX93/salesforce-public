@@ -4,6 +4,12 @@
         <members>CaseTriggerDispatcher</members>
         <members>CaseTriggerHandler</members>
         <members>PerformanceUtil</members>
+        <members>JSON2Apex</members>
+        <members>JSON2Apex_Test</members>
+        <members>JsonDebug</members>
+        <members>JsonDebug_Test</members>
+        <members>TestCaseTrigger</members>
+        <members>DataDog</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -12,27 +18,31 @@
         <name>CustomObject</name>
     </types>
     <types>
-        <members>PerformanceLog__c.ApexClass__c</members>
-        <members>PerformanceLog__c.ApexExecContext__c</members>
-        <members>PerformanceLog__c.ApexMethod__c</members>
-        <members>PerformanceLog__c.ApexSObject__c</members>
+        <members>PerformanceLog__c.class_name__c</members>
+        <members>PerformanceLog__c.trigger_type__c</members>
+        <members>PerformanceLog__c.method_name__c</members>
+        <members>PerformanceLog__c.object_name__c</members>
         <members>PerformanceLog__c.CPUTime_Left_percentage__c</members>
         <members>PerformanceLog__c.CPU_Time_Used__c</members>
         <members>PerformanceLog__c.Heap_Size_Left_percentage__c</members>
         <members>PerformanceLog__c.Heap_Size_Used__c</members>
         <members>PerformanceLog__c.Queries_Left_percentage__c</members>
         <members>PerformanceLog__c.Queries_Used__c</members>
-        <members>PerformanceLog__c.RecordsInContext__c</members>
-        <members>PerformanceLog__c.Total_RunTime__c</members>
-        <members>PerformanceLog__c.RequestId__c</members>
-        <members>PerformanceLog__c.Quiddity__c</members>
-        <members>PerformanceLog__c.IsCurrentContextTrigger__c</members>
+        <members>PerformanceLog__c.records_in_context__c</members>
+        <members>PerformanceLog__c.request_id__c</members>
+        <members>PerformanceLog__c.transaction_quiddity__c</members>
+        <members>PerformanceLog__c.is_current_context_trigger__c</members>
         <members>PerformanceLog__c.HeapSize_Limits__c</members>
         <members>PerformanceLog__c.CPUTime_Limits__c</members>
         <members>PerformanceLog__c.Query_Limits__c</members>
         <members>PerformanceMeta__mdt.ProjectName__c</members>
-        <members>PerformanceMeta__mdt.ProjectName__c</members>
-        <members>PerformanceMeta__mdt.ProjectName__c</members>
+        <members>PerformanceMeta__mdt.ReleaseDate__c</members>
+        <members>PerformanceMeta__mdt.VersionNumber__c</members>
+        <members>PerformanceLog__c.organization_id__c</members>
+        <members>PerformanceLog__c.organization_name__c</members>
+        <members>PerformanceLog__c.profile_id__c</members>
+        <members>PerformanceLog__c.user_id__c</members>
+        <members>PerformanceLog__c.user_name__c</members>
         <name>CustomField</name>
     </types>
     <types>
