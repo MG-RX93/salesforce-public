@@ -1,0 +1,1 @@
+cat $jsonfile | jq -r 'to_entries |map(.key),map(.value)|@csv'
