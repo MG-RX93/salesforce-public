@@ -21,12 +21,6 @@ red='\033[0;31m'
 yellow='\033[0;33m'
 clear='\033[0m'
 
-# declare -A fruits_prices
-# fruits_prices[cherry]=24
-# fruits_prices[berry]=27
-# echo -e "${red}Array value:${clear}"${fruits_prices[@]}
-# echo -e "${red}Array key:${clear}"${!fruits_prices[@]}
-
 # declare associative array
 declare -A runTimeArray 
 echo "Array Value: "$runTimeArray
@@ -92,41 +86,7 @@ do
     done
 done
 
-# # Change directory
-# pushd ~/Desktop/PTLogs/json/first/
-# # Loop through processed json files.
-# # Append trigger type to file name to make it unique & create new file for each trigger type.
-# for f in *.json
-# do
-#     jq -c '.[]' $f | while read i; do
-#         # Print individual objects within the json array
-#         jsonObj=$(echo $i)
-#         # echo $jsonObj
-
-#         # Print the trigger type value
-#         jsonValue=$(echo $jsonObj | jq '.trigger_type' | sed -e 's/^"//' -e 's/"$//')
-#         # echo $jsonValue
-        
-#         # Append trigger type to file name
-#         echo $jsonObj | jq . | tee ~/Desktop/PTLogs/json/second/"${f%.json}_$jsonValue".json
-
-#     done
-# done
-
-# # Change directory
-# pushd ~/Desktop/PTLogs/json/second/
-# # Loop through processed json files.
-# # Add runtime as item to each json object.
-# for f in *.json
-# do
-#     runTimeValue=$(echo "${runTimeArray["${f%.*}"]}")
-#     echo -e "${red}RunTime value:${clear}"$runTimeValue
-#     cat $f | jq --arg r "${runTimeValue}" '.runtime += $r' | tee ~/Desktop/PTLogs/json/final/"${f}"
-# done
-
-
 pushd ~/Desktop/PTLogs/json/ProcessedRunTimeArrays/
-# jq -s '.' *.json | tee ./stitched.json
 
 for f in *.json
 do
