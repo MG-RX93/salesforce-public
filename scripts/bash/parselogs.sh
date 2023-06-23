@@ -88,26 +88,26 @@ do
     done
 done
 
-# Change directory
-pushd ~/Desktop/PTLogs/json/first/
-# Loop through processed json files.
-# Append trigger type to file name to make it unique & create new file for each trigger type.
-for f in *.json
-do
-    jq -c '.[]' $f | while read i; do
-        # Print individual objects within the json array
-        jsonObj=$(echo $i)
-        # echo $jsonObj
+# # Change directory
+# pushd ~/Desktop/PTLogs/json/first/
+# # Loop through processed json files.
+# # Append trigger type to file name to make it unique & create new file for each trigger type.
+# for f in *.json
+# do
+#     jq -c '.[]' $f | while read i; do
+#         # Print individual objects within the json array
+#         jsonObj=$(echo $i)
+#         # echo $jsonObj
 
-        # Print the trigger type value
-        jsonValue=$(echo $jsonObj | jq '.trigger_type' | sed -e 's/^"//' -e 's/"$//')
-        # echo $jsonValue
+#         # Print the trigger type value
+#         jsonValue=$(echo $jsonObj | jq '.trigger_type' | sed -e 's/^"//' -e 's/"$//')
+#         # echo $jsonValue
         
-        # Append trigger type to file name
-        echo $jsonObj | jq . | tee ~/Desktop/PTLogs/json/second/"${f%.json}_$jsonValue".json
+#         # Append trigger type to file name
+#         echo $jsonObj | jq . | tee ~/Desktop/PTLogs/json/second/"${f%.json}_$jsonValue".json
 
-    done
-done
+#     done
+# done
 
 # # Change directory
 # pushd ~/Desktop/PTLogs/json/second/
