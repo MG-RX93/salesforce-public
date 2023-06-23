@@ -73,17 +73,6 @@ do
 done
 
 # Change directory
-pushd ~/Desktop/PTLogs/json/UnprocessedArrays/
-for f in *.json
-do
-    jq -c '.[]' $f | while read i; do
-     # Print individual objects within the json array
-        jsonObj=$(echo $i)
-        echo $jsonObj
-    done
-done
-
-# Change directory
 pushd ~/Desktop/PTLogs/json/first/
 # Loop through processed json files.
 # Append trigger type to file name to make it unique & create new file for each trigger type.
@@ -104,16 +93,16 @@ do
     done
 done
 
-# Change directory
-pushd ~/Desktop/PTLogs/json/second/
-# Loop through processed json files.
-# Add runtime as item to each json object.
-for f in *.json
-do
-    runTimeValue=$(echo "${runTimeArray["${f%.*}"]}")
-    echo -e "${red}RunTime value:${clear}"$runTimeValue
-    cat $f | jq --arg r "${runTimeValue}" '.runtime += $r' | tee ~/Desktop/PTLogs/json/final/"${f}"
-done
+# # Change directory
+# pushd ~/Desktop/PTLogs/json/second/
+# # Loop through processed json files.
+# # Add runtime as item to each json object.
+# for f in *.json
+# do
+#     runTimeValue=$(echo "${runTimeArray["${f%.*}"]}")
+#     echo -e "${red}RunTime value:${clear}"$runTimeValue
+#     cat $f | jq --arg r "${runTimeValue}" '.runtime += $r' | tee ~/Desktop/PTLogs/json/final/"${f}"
+# done
 
 
 pushd ~/Desktop/PTLogs/json/final/
