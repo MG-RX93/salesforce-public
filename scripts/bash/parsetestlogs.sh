@@ -88,7 +88,7 @@ pushd ~/Desktop/PTLogs/json/ProcessedRunTimeArrays/
 
 for f in *.json
 do
-   processedJson=$(cat $f | jq '. | {runtime: .runtime, Id: .Id}')
+   processedJson=$(cat $f | jq 'del(.Id,.timestamp)')
    echo $processedJson | jq -r 'to_entries |map(.key),map(.value)|@csv' | tee ~/Desktop/PTLogs/csv/"${f%.json}".csv
 done
 
@@ -97,6 +97,29 @@ pushd ~/Desktop/PTLogs/csv/
 # Combine all CSVs into a single CSV file.
 awk '(NR == 1) || (FNR > 1)' *.csv > combined.csv
 
-gsed -i '1s/runtime/runtime__c/;' combined.csv
+gsed -i '1s/class_name/class_name__c/;
+1s/method_name/method_name__c/;
+1s/user_name/user_name__c/;
+1s/user_id/user_id__c/;
+1s/trigger_type/trigger_type__c/;
+1s/transaction_quiddity/transaction_quiddity__c/;
+1s/request_id/request_id__c/;
+1s/records_in_context/records_in_context__c/;
+1s/query_limits/query_limits__c/;
+1s/queries_used/queries_used__c/;
+1s/queries_left_percentage/queries_left_percentage__c/;
+1s/profile_id/profile_id__c/;
+1s/organization_name/organization_name__c/;
+1s/organization_id/organization_id__c/;
+1s/object_name/object_name__c/;
+1s/is_current_context_trigger/is_current_context_trigger__c/;
+1s/heapsize_limits/heapsize_limits__c/;
+1s/heap_size_used/heap_size_used__c/;
+1s/heap_size_left_percentage/heap_size_left_percentage__c/;
+1s/cputime_limits/cputime_limits__c/;
+1s/cputime_left_percentage/cputime_left_percentage__c/;
+1s/cpu_time_used/cpu_time_used__c/;
+1s/runtime/runtime__c/;
+' combined.csv
 
-sf data upsert bulk --sobject PerformanceLog__c --file ./combined.csv --external-id Id -o NA91
+sf data upsert bulk --sobject PerformanceLog__c --file ./combined.csv -o NA91
