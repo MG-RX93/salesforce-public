@@ -97,3 +97,13 @@ done
 pushd ~/Desktop/PTLogs/csv/
 # Combine all CSVs into a single CSV file.
 awk '(NR == 1) || (FNR > 1)' *.csv > combined.csv
+
+headerValues=$(head -n 1 combined.csv)
+echo $headerValues
+
+for v in $headerValues
+do
+    echo -e "${yellow}value is:${clear}"$v
+done
+
+# sed -i 's/user_name/user_name__c' combined.csv
