@@ -82,9 +82,13 @@ do
      # Print individual objects within the json array
         jsonObj=$(echo $i)
 
+        jsonValue=$(echo $jsonObj | jq '.trigger_type' | sed -e 's/^"//' -e 's/"$//')
+        # echo $jsonValue
         
         jsonWithRunTime=$(echo $jsonObj | jq --arg r "${runTimeValue}" '.runtime += $r')
-        echo $jsonWithRunTime
+        # echo $jsonWithRunTime
+
+        echo $jsonWithRunTime | jq . | tee ~/Desktop/PTLogs/json/ProcessedRunTimeArrays/"${f%.json}_$jsonValue".json
     done
 done
 
