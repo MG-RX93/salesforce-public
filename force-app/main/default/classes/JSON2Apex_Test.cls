@@ -7,27 +7,27 @@ public class JSON2Apex_Test {
 	
 	static testMethod void testParse() {
 		String json = '{'+
-		'  \"log_record_id\" : \"a09Hu00001WOX5uIAH\",'+
+		'  \"Id\" : \"a09Hu00001WOdiSIAT\",'+
 		'  \"is_current_context_trigger\" : true,'+
 		'  \"transaction_quiddity\" : \"RUNTEST_ASYNC\",'+
-		'  \"request_id\" : \"4qe194o2Z7MsSF0X1mWjc-\",'+
-		'  \"timestamp\" : \"2023-06-20T23:35:22.826Z\",'+
+		'  \"request_id\" : \"4qhOsPo1BSDCxF0X1mSfk-\",'+
+		'  \"timestamp\" : \"2023-06-23T17:28:33.322Z\",'+
 		'  \"organization_id\" : \"00D2E000001GjeGUAS\",'+
 		'  \"organization_name\" : \"MyCompany\",'+
 		'  \"profile_id\" : \"00e2E000002KmBiQAK\",'+
 		'  \"user_id\" : \"0052E00000JS3ogQAD\",'+
 		'  \"user_name\" : \"J R K\",'+
-		'  \"heap_size_left\" : 99.91491666666667,'+
-		'  \"cpu_time_left\" : 96.97,'+
-		'  \"queries_left\" : 100.0,'+
-		'  \"heap_size_total\" : 6000000,'+
-		'  \"cpu_time_total\" : 10000,'+
-		'  \"queries_total\" : 100,'+
-		'  \"heap_size_used\" : 4738,'+
-		'  \"cpu_time_used\" : 302,'+
+		'  \"heap_size_left_percentage\" : 99.92474999999999,'+
+		'  \"cputime_left_percentage\" : 94.97,'+
+		'  \"queries_left_percentage\" : 100.0,'+
+		'  \"heapsize_limits\" : 6000000,'+
+		'  \"cputime_limits\" : 10000,'+
+		'  \"query_limits\" : 100,'+
+		'  \"heap_size_used\" : 4148,'+
+		'  \"cpu_time_used\" : 502,'+
 		'  \"queries_used\" : 0,'+
 		'  \"records_in_context\" : 4,'+
-		'  \"trigger_type\" : \"BEFORE_UPDATE\",'+
+		'  \"trigger_type\" : \"AFTER_INSERT\",'+
 		'  \"method_name\" : \"All\",'+
 		'  \"class_name\" : \"All\",'+
 		'  \"object_name\" : \"Case\"'+

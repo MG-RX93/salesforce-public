@@ -4,7 +4,7 @@
 
 public class JSON2Apex {
 
-	public String log_record_id;
+	public String Id;
 	public Boolean is_current_context_trigger;
 	public String transaction_quiddity;
 	public String request_id;
@@ -14,12 +14,12 @@ public class JSON2Apex {
 	public String profile_id;
 	public String user_id;
 	public String user_name;
-	public Double heap_size_left;
-	public Double cpu_time_left;
-	public Double queries_left;
-	public Integer heap_size_total;
-	public Integer cpu_time_total;
-	public Integer queries_total;
+	public Double heap_size_left_percentage;
+	public Double cputime_left_percentage;
+	public Double queries_left_percentage;
+	public Integer heapsize_limits;
+	public Integer cputime_limits;
+	public Integer query_limits;
 	public Integer heap_size_used;
 	public Integer cpu_time_used;
 	public Integer queries_used;
