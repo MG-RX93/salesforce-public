@@ -75,13 +75,13 @@ done
 # Change directory
 pushd ~/Desktop/PTLogs/json/UnprocessedArrays/
 for f in *.json
-do
+do   
     runTimeValue=$(echo "${runTimeArray["${f%.*}"]}")
     echo -e "${red}RunTime value:${clear}"$runTimeValue
     jq -c '.[]' $f | while read i; do
      # Print individual objects within the json array
         jsonObj=$(echo $i)
-
+       
         jsonValue=$(echo $jsonObj | jq '.trigger_type' | sed -e 's/^"//' -e 's/"$//')
         # echo $jsonValue
         
@@ -125,7 +125,7 @@ done
 # done
 
 
-pushd ~/Desktop/PTLogs/json/final/
+pushd ~/Desktop/PTLogs/json/ProcessedRunTimeArrays/
 # jq -s '.' *.json | tee ./stitched.json
 
 for f in *.json
