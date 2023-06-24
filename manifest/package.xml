@@ -43,6 +43,7 @@
         <members>PerformanceLog__c.profile_id__c</members>
         <members>PerformanceLog__c.user_id__c</members>
         <members>PerformanceLog__c.user_name__c</members>
+        <members>PerformanceLog__c.runtime__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -61,6 +62,10 @@
     <types>
         <members>PerformanceLog_Sys_Admin</members>
         <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>Public_Reports/New_PerformanceLogs_Report_rL2</members>
+        <name>Report</name>
     </types>
     <version>57.0</version>
 </Package>
