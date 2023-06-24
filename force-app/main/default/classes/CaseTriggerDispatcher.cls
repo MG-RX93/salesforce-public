@@ -11,7 +11,7 @@ public class CaseTriggerDispatcher{
         if(Trigger.isInsert) {
            Map<String, Integer> currentLimits = PerformanceUtil.getCurrentLimits();
            CaseTriggerHandler.runBeforeInsert(newList, oldList,newMAp, oldMap);
-           PerformanceUtil.capturePerformanceMetrics(currentLimits, 'All', 'All' ,String.valueOf(Trigger.operationType) , 'Case', Trigger.size, Trigger.isExecuting);
+           PerformanceUtil.capturePerformanceMetrics(currentLimits, 'CaseTriggerDispatcher', 'runBeforeInsert' ,String.valueOf(Trigger.operationType) , 'Case', Trigger.size, Trigger.isExecuting);
         }
         
         /**
@@ -20,7 +20,7 @@ public class CaseTriggerDispatcher{
         if(Trigger.isUpdate) {
            Map<String, Integer> currentLimits = PerformanceUtil.getCurrentLimits();
            CaseTriggerHandler.runBeforeUpdate(newList, oldList,newMAp, oldMap);
-           PerformanceUtil.capturePerformanceMetrics(currentLimits, 'All', 'All' ,String.valueOf(Trigger.operationType) , 'Case', Trigger.size, Trigger.isExecuting);
+           PerformanceUtil.capturePerformanceMetrics(currentLimits, 'CaseTriggerDispatcher', 'runBeforeUpdate' ,String.valueOf(Trigger.operationType) , 'Case', Trigger.size, Trigger.isExecuting);
         }
 
         /**
@@ -40,13 +40,13 @@ public class CaseTriggerDispatcher{
         if(Trigger.isInsert) {
            Map<String, Integer> currentLimits = PerformanceUtil.getCurrentLimits();
            CaseTriggerHandler.runAfterInsert(newList, oldList,newMAp, oldMap);
-           PerformanceUtil.capturePerformanceMetrics(currentLimits, 'All', 'All' ,String.valueOf(Trigger.operationType) , 'Case', Trigger.size, Trigger.isExecuting);
+           PerformanceUtil.capturePerformanceMetrics(currentLimits, 'CaseTriggerDispatcher', 'runAfterInsert' ,String.valueOf(Trigger.operationType) , 'Case', Trigger.size, Trigger.isExecuting);
         }
 
         if(Trigger.isUpdate) {            
            Map<String, Integer> currentLimits = PerformanceUtil.getCurrentLimits();
            CaseTriggerHandler.runAfterUpdate(newList, oldList,newMAp, oldMap);
-           PerformanceUtil.capturePerformanceMetrics(currentLimits, 'All', 'All' ,String.valueOf(Trigger.operationType) , 'Case', Trigger.size, Trigger.isExecuting);
+           PerformanceUtil.capturePerformanceMetrics(currentLimits, 'CaseTriggerDispatcher', 'runAfterUpdate' ,String.valueOf(Trigger.operationType) , 'Case', Trigger.size, Trigger.isExecuting);
         }
 
 
