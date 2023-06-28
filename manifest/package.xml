@@ -13,6 +13,10 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>CaseTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
         <members>PerformanceLog__c</members>
         <members>PerformanceMeta__mdt</members>
         <name>CustomObject</name>
