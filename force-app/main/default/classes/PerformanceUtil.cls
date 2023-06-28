@@ -59,8 +59,8 @@ public class PerformanceUtil {
     pl.profile_id__c = UserInfo.getProfileId();
     pl.user_id__c = UserInfo.getUserId();
     pl.user_name__c = UserInfo.getName();
-    insert pl;
     System.debug('Sync Log record: '+pl);
+    // insert pl;
     System.debug('Sync Log: '+JSON.serialize(getJSON(pl)));
     // callDataDogPost(JSON.serialize(pl));
     // System.debug('queryCount% left: '+ (queryCountUsedPercent)*100 + '%');
@@ -97,8 +97,8 @@ public class PerformanceUtil {
     pl.profile_id__c = UserInfo.getProfileId();
     pl.user_id__c = UserInfo.getUserId();
     pl.user_name__c = UserInfo.getName();
-    insert pl;
     System.debug('Async Log record: '+pl);
+    // insert pl;
     System.debug('Async Log: '+JSON.serialize(getJSON(pl)));
     // callDataDogPost(JSON.serialize(pl));
     
@@ -160,7 +160,7 @@ public class PerformanceUtil {
     // gen.writeEndObject();
     gen.writeEndObject();
     String jsonData = gen.getAsString();
-    System.debug('jsonGen: '+jsonData);
+    // System.debug('jsonGen: '+jsonData);
     return (JSON2Apex)JSON.deserialize(jsonData, JSON2Apex.class);
   }
 
