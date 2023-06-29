@@ -10,6 +10,8 @@
         <members>JsonDebug_Test</members>
         <members>TestCaseTrigger</members>
         <members>DataDog</members>
+        <members>ScheduleCaseUpdates</members>
+        <members>ScheduleCasePriorityUpdate</members>
         <name>ApexClass</name>
     </types>
     <types>
