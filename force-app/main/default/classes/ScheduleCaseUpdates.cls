@@ -29,5 +29,4 @@ global class ScheduleCaseUpdates implements Schedulable {
 		}
 		update caseUpdateList;
 	}
-
 }
