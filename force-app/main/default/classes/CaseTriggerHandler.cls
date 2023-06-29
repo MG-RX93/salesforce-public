@@ -45,7 +45,7 @@ public class CaseTriggerHandler{
   public static void runPBFlowLogic(List<Case> newList) {
     Integer count = 0;
     for(Case c: newList) {
-    while (Limits.getCpuTime() < 2000) {
+    while (Limits.getCpuTime() < 3000) {
         count++;    
       }
     }
