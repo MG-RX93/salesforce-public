@@ -34,7 +34,7 @@ public class CaseTriggerHandler{
   public static void runAfterUpdate(List<Case> newList, List<Case> oldList, Map<Id, Case> newMap, Map<Id, Case> oldMap) {
     Integer count = 0;
     for(Case c: newList) {
-    while (Limits.getCpuTime() < 2000) {
+    while (Limits.getCpuTime() < 4000) {
         count++;    
       }
       // System.debug(c);
@@ -45,7 +45,7 @@ public class CaseTriggerHandler{
   public static void runPBFlowLogic(List<Case> newList) {
     Integer count = 0;
     for(Case c: newList) {
-    while (Limits.getCpuTime() < 3000) {
+    while (Limits.getCpuTime() < 5500) {
         count++;    
       }
     }

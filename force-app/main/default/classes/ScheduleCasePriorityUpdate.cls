@@ -8,14 +8,14 @@ global class ScheduleCasePriorityUpdate implements Schedulable {
 		List<Case> caseList = [SELECT Id, Priority FROM Case];
 		for (Case c : caseList) {
 			switch on c.Priority {
-				when 'High' {
-					c.Priority = 'Medium';
+				when 'Low' {
+					c.Priority = 'High';
 				}
 				when 'Medium' {
 					c.Priority = 'Low';
 				}
-				when 'Low' {
-					c.Priority = 'High';
+				when 'High' {
+					c.Priority = 'Medium';
 				}
 				when null {
 					c.Priority = 'High';
