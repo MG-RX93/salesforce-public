@@ -2,12 +2,11 @@
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>All</fullName>
     <columns>NAME</columns>
-    <columns>ApexExecContext__c</columns>
-    <columns>ApexSObject__c</columns>
     <columns>CPUTime_Left_percentage__c</columns>
-    <columns>Quiddity__c</columns>
-    <columns>RecordsInContext__c</columns>
-    <columns>RequestId__c</columns>
+    <columns>runtime__c</columns>
+    <columns>class_name__c</columns>
+    <columns>method_name__c</columns>
+    <columns>object_name__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

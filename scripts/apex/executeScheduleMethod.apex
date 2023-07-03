@@ -1,0 +1,1 @@
+ScheduleCaseUpdates.updateCases();

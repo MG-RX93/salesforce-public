@@ -7,37 +7,37 @@ public class CaseTriggerHandler{
         while (Limits.getCpuTime() < 250) {
             count++;    
         }
-      System.debug(c);
+      // System.debug(c);
     }
   }
 
   public static void runBeforeUpdate(List<Case> newList, List<Case> oldList, Map<Id, Case> newMap, Map<Id, Case> oldMap) {
     Integer count = 0;
     for(Case c: newList) {
-        while (Limits.getCpuTime() < 300) {
+        while (Limits.getCpuTime() < 500) {
         count++;    
         }
-      System.debug(c);
+      // System.debug(c);
     }
   }
 
   public static void runAfterInsert(List<Case> newList, List<Case> oldList, Map<Id, Case> newMap, Map<Id, Case> oldMap) {
     Integer count = 0;
     for(Case c: newList) {
-      while (Limits.getCpuTime() < 500) {
+      while (Limits.getCpuTime() < 750) {
         count++;    
       }
-      System.debug(c);
+      // System.debug(c);
     }
   }
 
   public static void runAfterUpdate(List<Case> newList, List<Case> oldList, Map<Id, Case> newMap, Map<Id, Case> oldMap) {
     Integer count = 0;
     for(Case c: newList) {
-    while (Limits.getCpuTime() < 750) {
+    while (Limits.getCpuTime() < 1000) {
         count++;    
       }
-      System.debug(c);
+      // System.debug(c);
     }
   }
   
@@ -45,10 +45,9 @@ public class CaseTriggerHandler{
   public static void runPBFlowLogic(List<Case> newList) {
     Integer count = 0;
     for(Case c: newList) {
-    while (Limits.getCpuTime() < 1000) {
+    while (Limits.getCpuTime() < 3000) {
         count++;    
       }
-      System.debug(count);
     }
   }
 

@@ -10,7 +10,13 @@
         <members>JsonDebug_Test</members>
         <members>TestCaseTrigger</members>
         <members>DataDog</members>
+        <members>ScheduleCaseUpdates</members>
+        <members>ScheduleCasePriorityUpdate</members>
         <name>ApexClass</name>
+    </types>
+    <types>
+        <members>CaseTrigger</members>
+        <name>ApexTrigger</name>
     </types>
     <types>
         <members>PerformanceLog__c</members>
@@ -43,6 +49,7 @@
         <members>PerformanceLog__c.profile_id__c</members>
         <members>PerformanceLog__c.user_id__c</members>
         <members>PerformanceLog__c.user_name__c</members>
+        <members>PerformanceLog__c.runtime__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -61,6 +68,10 @@
     <types>
         <members>PerformanceLog_Sys_Admin</members>
         <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>Public_Reports/New_PerformanceLogs_Report_rL2</members>
+        <name>Report</name>
     </types>
     <version>57.0</version>
 </Package>

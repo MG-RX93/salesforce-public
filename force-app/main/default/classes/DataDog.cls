@@ -9,8 +9,8 @@ public class DataDog {
         'hostname' => 'Developer Org',
         'message' => String.valueOf(System.now())+'|This is a test',
         'service' => 'Custom Apex',
-        'status' => 'Error',
-        'timestamp' => String.valueOf(System.now()),
+        'status' => 'Error'
+        /*'timestamp' => String.valueOf(System.now()),
         'user.user_name' => UserInfo.getName(),
         'user.user_id' => UserInfo.getUserId(),
         'user.profile_id' => UserInfo.getProfileId(),
@@ -32,7 +32,7 @@ public class DataDog {
         'limits.left(%).heap_size_left' => String.valueOf(pl.Heap_Size_Left_percentage__c),
         'transaction.quiddity' => String.valueOf(pl.Quiddity__c),
         'request_id' => String.valueOf(pl.RequestId__c),
-        'transaction.is_current_context_trigger' => String.valueOf(pl.IsCurrentContextTrigger__c)
+        'transaction.is_current_context_trigger' => String.valueOf(pl.IsCurrentContextTrigger__c)*/
     });
     // System.debug('JSON o/p:'+jsonBody);
 
