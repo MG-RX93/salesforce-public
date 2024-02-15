@@ -214,4 +214,31 @@ public class PerformanceUtil {
   private static Integer getHeapSizeUsed() {
     return Limits.getHeapSize();
   }
+
+  private static void dynamicDebug(
+      String methodName,
+      String className,
+      String developerName,
+      List<SObject> sObjectList
+    ) {
+      if (
+        (String.isNotBlank(methodName) &&
+        String.isNotBlank(className) &&
+        String.isNotBlank(developerName)) &&
+        System.Label.DebugConfigMasterSwitch == 'ON'
+      ) {
+        for (DebugConfig__mdt dc : [
+          SELECT Id, isActive__c
+          FROM DebugConfig__mdt
+          WHERE
+            MethodName__c = :methodName
+            AND ClassName__c = :className
+            AND DeveloperName = :developerName
+        ]) {
+          if (dc.isActive__c == true) {
+            System.debug(developerName + ': ' + (List<Case>) sObjectList);
+          }
+        }
+      }
+    }
 }
