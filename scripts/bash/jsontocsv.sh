@@ -1,1 +1,0 @@
-cat $f | jq -r 'to_entries |map(.key),map(.value)|@csv' | tee "${f%.json}".csv

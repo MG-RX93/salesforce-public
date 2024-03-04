@@ -1,5 +1,0 @@
-logs:
-  - type: file
-    path: "/Users/jekanapa/Documents/ApexLogs/apex.log"
-    service: "apex"
-    source: "workmbp"
