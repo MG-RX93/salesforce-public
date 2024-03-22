@@ -46,7 +46,7 @@ public without sharing class ProcessCaseFiles {
       insertFeedItem(fileIdList, caseAndFileMap, caseIdList);
     }
     if (!caseIdList.isEmpty()) {
-      updateCaseStatus(caseIdList);
+      updateFileCounter(caseIdList);
     }
   }
 
@@ -123,7 +123,7 @@ public without sharing class ProcessCaseFiles {
     insert feedItemList;
   }
 
-  private void updateCaseStatus(List<Id> caseIdList) {
+  private void updateFileCounter(List<Id> caseIdList) {
     List<Case> casesToUpdate = new List<Case>();
     List<Case> caseList = getCaseList(caseIdList);
     for (Case c : caseList) {
