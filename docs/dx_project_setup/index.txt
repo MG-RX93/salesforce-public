@@ -1,0 +1,4 @@
+Go in the following order:
+
+1. generate_project.md
+2. setup_package_directories.md
