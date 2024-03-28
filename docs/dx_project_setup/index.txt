@@ -1,4 +1,6 @@
-Go in the following order:
+Implement in the following order:
 
 1. generate_project.md
-2. setup_package_directories.md
+2. setup_project_configuration.md
+3. setup_devhub.md
+4. create_scratch_orgs.md
