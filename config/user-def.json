@@ -1,0 +1,12 @@
+{
+  "Username": "orgadmin@dx.org",
+  "LastName": "Admin",
+  "Email": "tester1@sfdx.org",
+  "Alias": "orgadmin",
+  "TimeZoneSidKey": "America/Los_Angeles",
+  "LocaleSidKey": "en_US",
+  "EmailEncodingKey": "UTF-8",
+  "LanguageLocaleKey": "en_US",
+  "profileName": "Standard Platform User",
+  "generatePassword": false
+}
