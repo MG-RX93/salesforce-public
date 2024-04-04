@@ -4,3 +4,4 @@ Implement in the following order:
 2. setup_project_configuration.md
 3. setup_devhub.md
 4. create_scratch_orgs.md
+5. create_userdef_file.md
