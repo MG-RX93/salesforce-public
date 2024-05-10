@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>CaseObjectPrefix</fullName>
+        <categories>Files</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Object Prefix</shortDescription>
+        <value>500</value>
+    </labels>
+    <labels>
+        <fullName>AdminUserNames</fullName>
+        <categories>Files</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>csv of admin usernames</shortDescription>
+        <value>adminuser@sfdx.com</value>
+    </labels>
+</CustomLabels>

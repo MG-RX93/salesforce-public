@@ -1,0 +1,40 @@
+<project name="salesforce_public" default="" basedir="." xmlns:sf="antlib:com.salesforce">
+
+  <property file="build.properties"/>
+  <property environment="env"/>
+
+  <!-- Setting default value for username, password and session id properties to empty string 
+       so unset values are treated as empty. Without this, ant expressions such as ${sf.username}
+       will be treated literally.
+  -->
+  <condition property="sf.username" value=""> <not> <isset property="sf.username"/> </not> </condition>
+  <condition property="sf.password" value=""> <not> <isset property="sf.password"/> </not> </condition>
+  <condition property="sf.sessionId" value=""> <not> <isset property="sf.sessionId"/> </not> </condition>
+
+  <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+      <classpath>
+          <pathelement location="ant-salesforce.jar" />        	
+      </classpath>
+  </taskdef>
+
+<!-- Test out deploy and retrieve verbs for package 'mypkg' -->
+<target name="validateDevOrg">
+  <!-- Upload the contents of the "mypkg" package -->
+  <sf:deploy username="${sf.usernameDevOrg}" password="${sf.passwordDevOrg}" serverurl="${sf.serverurlDevOrg}" deployRoot="../deploy" testLevel="RunSpecifiedTests" checkOnly="true">
+    <runTest>TestPlaceHolder</runTest>
+  </sf:deploy>
+</target>
+
+  <target name="deployDevOrg">
+  <!-- Upload the contents of the "mypkg" package -->
+  <sf:deploy username="${sf.usernameDevOrg}" password="${sf.passwordDevOrg}" serverurl="${sf.serverurlDevOrg}" deployRoot="../deploy" runAllTests="false">
+  </sf:deploy>
+</target>
+
+<!-- Test out deploy and retrieve verbs for package 'mypkg' -->
+<target name="retrieveDevOrg">
+  <!-- Retrieve the contents into another directory -->
+  <sf:retrieve username="${sf.usernameDevOrg}" password="${sf.passwordDevOrg}" serverurl="${sf.serverurlDevOrg}"  retrieveTarget="../retrieve" unpackaged="../retrieve/package.xml"/>
+</target>
+  
+</project>

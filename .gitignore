@@ -39,7 +39,9 @@ $RECYCLE.BIN/
 # Local environment variables
 .env
 
-# Python Salesforce Functions
-**/__pycache__/
-**/.venv/
-**/venv/
+#ANT scripts
+scripts/ant/build/build.properties
+scripts/bash/encrypt/*.properties
+
+# Validation results
+**/validation_results/*.json
