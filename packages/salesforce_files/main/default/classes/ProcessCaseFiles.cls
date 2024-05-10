@@ -85,7 +85,7 @@ public without sharing class ProcessCaseFiles {
   @TestVisible
   private List<Case> getCaseList(List<Id> caseIdList) {
     List<Case> caseList = [
-      SELECT Id, CaseNumber, Number_of_Attachments__c
+      SELECT Id, CaseNumber
       FROM Case
       WHERE Id IN :caseIdList
     ];
