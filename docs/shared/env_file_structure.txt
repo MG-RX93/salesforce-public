@@ -1,0 +1,13 @@
+# General
+PACKAGE_NAME="salesforce_files"
+DIR_NAME="projects/salesforce_files"
+
+
+# Retrieve Command
+ORG_NAME="user00@sfdx.com"
+
+# Validate Command
+SPECIFIED_TESTS="Test1, Test2"
+
+# Validation Result Command
+JOB_ID="some Id"
