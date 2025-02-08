@@ -2,15 +2,8 @@
   "packageDirectories": [
     {
       "path": "packages/util",
-      "default": false,
-      "package": "Salesforce Public - Util",
-      "versionNumber": "1.0.0.NEXT",
-      "definitionFile": "config/project-scratch-def.json"
-    },
-    {
-      "path": "packages/salesforce_files",
       "default": true,
-      "package": "Salesforce Public - Files",
+      "package": "Salesforce Public - Util",
       "versionNumber": "1.0.0.NEXT",
       "definitionFile": "config/project-scratch-def.json"
     }
@@ -18,5 +11,5 @@
   "name": "salesforce-public",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "60.0"
+  "sourceApiVersion": "61.0"
 }
