@@ -1,6 +1,6 @@
 #!/bin/sh
 set -a  # Automatically export all vars
-. ./.env
+. ./config/.env
 set +a  # Disable Automatic export
 
 
